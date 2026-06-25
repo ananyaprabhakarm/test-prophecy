@@ -1,0 +1,117 @@
+{
+  "id" : "test_pipeline__sample_data",
+  "metainfo" : {
+    "label" : "test_pipeline__sample_data",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "materialized" : "ephemeral",
+        "database" : "\"dev_orchestration_inmemory\"",
+        "schema" : "\"schema\"",
+        "type" : "ModelConfig"
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "sample_data_U6ANj07t" : {
+      "id" : "sample_data_U6ANj07t",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "sample_data"
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "\nSELECT *\n\nFROM sample_data\n\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_0",
+          "slug" : "input_port_0"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_0",
+          "slug" : "output_port_0"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "sample_data##IFohnMXE" : {
+      "id" : "sample_data##IFohnMXE",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "sample_data",
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "expressions" : [ ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "zIXuEPvE",
+          "slug" : "sample_data_union_union_000"
+        } ],
+        "outputs" : [ {
+          "id" : "U6ANj07t",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "sample_data_unio##q5Ujc0eb" : {
+      "id" : "sample_data_unio##q5Ujc0eb",
+      "component" : "SQLStatement",
+      "metadata" : {
+        "label" : "sample_data_union_union_000_union_000",
+        "phase" : 0
+      },
+      "properties" : {
+        "fileTabs" : [ {
+          "path" : "out",
+          "id" : "out",
+          "language" : "sql",
+          "content" : "SELECT \n  1 AS order_id,\n  'Electronics' AS category,\n  'North' AS region,\n  250.0 AS amount,\n  '2024-01-05' AS order_date\n\nUNION ALL\n\nSELECT \n  2,\n  'Clothing',\n  'South',\n  89.99,\n  '2024-01-07'\n\nUNION ALL\n\nSELECT \n  3,\n  'Electronics',\n  'East',\n  450.0,\n  '2024-01-10'\n\nUNION ALL\n\nSELECT \n  4,\n  'Home',\n  'North',\n  125.5,\n  '2024-01-12'\n\nUNION ALL\n\nSELECT \n  5,\n  'Clothing',\n  'West',\n  67.0,\n  '2024-01-15'\n\nUNION ALL\n\nSELECT \n  6,\n  'Electronics',\n  'South',\n  899.99,\n  '2024-01-18'\n\nUNION ALL\n\nSELECT \n  7,\n  'Home',\n  'East',\n  234.75,\n  '2024-01-20'\n\nUNION ALL\n\nSELECT \n  8,\n  'Clothing',\n  'North',\n  145.0,\n  '2024-01-22'\n\nUNION ALL\n\nSELECT \n  9,\n  'Electronics',\n  'West',\n  599.0,\n  '2024-01-25'\n\nUNION ALL\n\nSELECT \n  10,\n  'Home',\n  'South',\n  78.25,\n  '2024-01-27'\n\nUNION ALL\n\nSELECT \n  11,\n  'Clothing',\n  'East',\n  112.5,\n  '2024-01-28'\n\nUNION ALL\n\nSELECT \n  12,\n  'Electronics',\n  'North',\n  1250.0,\n  '2024-02-01'\n\nUNION ALL\n\nSELECT \n  13,\n  'Home',\n  'West',\n  345.0,\n  '2024-02-03'\n\nUNION ALL\n\nSELECT \n  14,\n  'Clothing',\n  'South',\n  95.75,\n  '2024-02-05'\n\nUNION ALL\n\nSELECT \n  15,\n  'Electronics',\n  'East',\n  725.0,\n  '2024-02-08'\n"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "xKxYbZZN",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "conn_sample_data##IFohnMXE_U6ANj07t_sample_data_U6ANj07t",
+    "source" : "sample_data##IFohnMXE",
+    "sourcePort" : "U6ANj07t",
+    "target" : "sample_data_U6ANj07t",
+    "targetPort" : "input_port_0",
+    "isWireless" : false
+  }, {
+    "id" : "fMa2v7M7",
+    "source" : "sample_data_unio##q5Ujc0eb",
+    "sourcePort" : "xKxYbZZN",
+    "target" : "sample_data##IFohnMXE",
+    "targetPort" : "zIXuEPvE",
+    "isWireless" : false
+  } ],
+  "component" : "Model"
+}

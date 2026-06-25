@@ -1,0 +1,259 @@
+{
+  "id" : "test_pipeline__by_region_groupBy_002",
+  "metainfo" : {
+    "label" : "test_pipeline__by_region_groupBy_002",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "materialized" : "ephemeral",
+        "database" : "\"dev_orchestration_inmemory\"",
+        "schema" : "\"schema\"",
+        "type" : "ModelConfig"
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "by_region_groupB##s1HfhwKD" : {
+      "id" : "by_region_groupB##s1HfhwKD",
+      "component" : "Aggregate",
+      "metadata" : {
+        "label" : "by_region_groupBy_002",
+        "phase" : 0
+      },
+      "properties" : {
+        "aggregate" : [ {
+          "expression" : {
+            "expression" : "region"
+          },
+          "_row_id" : "1217597974"
+        }, {
+          "expression" : {
+            "expression" : "COUNT(*)"
+          },
+          "alias" : "order_count",
+          "_row_id" : "980162489"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(SUM(amount), 2)"
+          },
+          "alias" : "total_revenue",
+          "_row_id" : "712685254"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(AVG(amount), 2)"
+          },
+          "alias" : "avg_order_value",
+          "_row_id" : "515275918"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(100.0 * SUM(amount) / MAX(sum_amount_sqe_000), 1)"
+          },
+          "alias" : "pct_of_revenue",
+          "_row_id" : "718160295"
+        } ],
+        "allowSelection" : true,
+        "condition" : {
+          "expression" : ""
+        },
+        "activeTab" : "aggregate",
+        "columnsSelector" : [ ],
+        "groupBy" : [ {
+          "expression" : {
+            "expression" : "region"
+          },
+          "_row_id" : "1660611748"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "aD4SyzRA",
+          "slug" : "by_region_from_001"
+        } ],
+        "outputs" : [ {
+          "id" : "HhOJowDW",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "by_region_groupBy_002_HhOJowDW" : {
+      "id" : "by_region_groupBy_002_HhOJowDW",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "by_region_groupBy_002"
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "\nSELECT *\n\nFROM by_region_groupBy_002\n\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_3",
+          "slug" : "input_port_3"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_3",
+          "slug" : "output_port_3"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "sample_data_U6ANj07t" : {
+      "id" : "sample_data_U6ANj07t",
+      "component" : "SQLStatement",
+      "metadata" : {
+        "label" : "sample_data"
+      },
+      "properties" : {
+        "fileTabs" : [ {
+          "path" : "output_port_0",
+          "id" : "output_port_0",
+          "language" : "sql",
+          "content" : "\nSELECT *\n\nFROM {{ ref('test_pipeline__sample_data') }}\n\n"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_0",
+          "slug" : "input_port_0"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_0",
+          "slug" : "output_port_0"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "by_region_from_0##UhDBJMvl" : {
+      "id" : "by_region_from_0##UhDBJMvl",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "by_region_from_000",
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "SUM(amount)"
+          },
+          "alias" : "sum_amount_sqe_000",
+          "_row_id" : "301353687"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "uLnJnKZ7",
+          "slug" : "source_data"
+        } ],
+        "outputs" : [ {
+          "id" : "egoRjPGu",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "by_region_from_0##Sox0qDPM" : {
+      "id" : "by_region_from_0##Sox0qDPM",
+      "component" : "Join",
+      "metadata" : {
+        "label" : "by_region_from_001",
+        "phase" : 0
+      },
+      "properties" : {
+        "conditions" : [ {
+          "alias" : "sq_000",
+          "joinType" : "CROSS"
+        } ],
+        "allowSelection" : false,
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "region"
+          },
+          "_row_id" : "723278198"
+        }, {
+          "expression" : {
+            "expression" : "amount"
+          },
+          "_row_id" : "1979960789"
+        }, {
+          "expression" : {
+            "expression" : "sq_000.sum_amount_sqe_000"
+          },
+          "_row_id" : "546330642"
+        } ],
+        "activeTab" : "conditions",
+        "columnsSelector" : [ ],
+        "headAlias" : "source_data"
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "EtovV8gl",
+          "slug" : "source_data"
+        }, {
+          "id" : "ro1DLS2d",
+          "slug" : "sq_000"
+        } ],
+        "outputs" : [ {
+          "id" : "fOkwFZyA",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "conn_by_region_groupB##s1HfhwKD_HhOJowDW_by_region_groupBy_002_HhOJowDW",
+    "source" : "by_region_groupB##s1HfhwKD",
+    "sourcePort" : "HhOJowDW",
+    "target" : "by_region_groupBy_002_HhOJowDW",
+    "targetPort" : "input_port_3",
+    "isWireless" : false
+  }, {
+    "id" : "hdPeVAI2",
+    "source" : "by_region_from_0##Sox0qDPM",
+    "sourcePort" : "fOkwFZyA",
+    "target" : "by_region_groupB##s1HfhwKD",
+    "targetPort" : "aD4SyzRA",
+    "isWireless" : false
+  }, {
+    "id" : "KZTi8vUF",
+    "source" : "by_region_from_0##UhDBJMvl",
+    "sourcePort" : "egoRjPGu",
+    "target" : "by_region_from_0##Sox0qDPM",
+    "targetPort" : "ro1DLS2d",
+    "isWireless" : false
+  }, {
+    "id" : "7V0HAHzV2O_to_1Kl48dpBap##WyaathgS",
+    "source" : "sample_data_U6ANj07t",
+    "sourcePort" : "output_port_0",
+    "target" : "by_region_from_0##Sox0qDPM",
+    "targetPort" : "EtovV8gl",
+    "isWireless" : false
+  }, {
+    "id" : "7V0HAHzV2O_to_1Kl48dpBap##lQBRw56T",
+    "source" : "sample_data_U6ANj07t",
+    "sourcePort" : "output_port_0",
+    "target" : "by_region_from_0##UhDBJMvl",
+    "targetPort" : "uLnJnKZ7",
+    "isWireless" : false
+  } ],
+  "component" : "Model"
+}
