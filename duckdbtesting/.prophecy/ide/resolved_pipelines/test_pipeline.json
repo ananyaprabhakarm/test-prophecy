@@ -2,7 +2,7 @@
   "id" : "test_pipeline",
   "metainfo" : {
     "label" : "test_pipeline",
-    "autoLayout" : true,
+    "autoLayout" : false,
     "version" : 1,
     "configuration" : {
       "schema" : {
@@ -10,7 +10,24 @@
         "fields" : [ ]
       }
     },
-    "isTranspiledPipeline" : false
+    "isTranspiledPipeline" : false,
+    "processesVsModelFiles" : {
+      "by_region_groupB##s1HfhwKD" : "models/test_pipeline/test_pipeline__by_region_groupBy_002.sql",
+      "by_category_grou##U6nyjY72" : "models/test_pipeline/test_pipeline__by_category_groupBy_002.sql",
+      "by_region_groupBy_002_HhOJowDW" : "models/test_pipeline/test_pipeline__by_region_groupBy_002.sql",
+      "sample_data_unio##q5Ujc0eb" : "models/test_pipeline/test_pipeline__sample_data.sql",
+      "enriched_data_YNOwRl0G" : "models/test_pipeline/test_pipeline__enriched_data.sql",
+      "by_category_groupBy_002_isPOPQ0Z" : "models/test_pipeline/test_pipeline__by_category_groupBy_002.sql",
+      "enriched_data##w7cseeyM" : "models/test_pipeline/test_pipeline__enriched_data.sql",
+      "sample_data_U6ANj07t" : "models/test_pipeline/test_pipeline__overall_stats.sql",
+      "overall_stats_s1SIyv7y" : "models/test_pipeline/test_pipeline__overall_stats.sql",
+      "sample_data##IFohnMXE" : "models/test_pipeline/test_pipeline__sample_data.sql",
+      "by_region_from_0##UhDBJMvl" : "models/test_pipeline/test_pipeline__by_region_groupBy_002.sql",
+      "by_region_from_0##Sox0qDPM" : "models/test_pipeline/test_pipeline__by_region_groupBy_002.sql",
+      "by_category_from##WV5PIicU" : "models/test_pipeline/test_pipeline__by_category_groupBy_002.sql",
+      "overall_stats##Lg9UpvoI" : "models/test_pipeline/test_pipeline__overall_stats.sql",
+      "by_category_from##Rp1ke0Ze" : "models/test_pipeline/test_pipeline__by_category_groupBy_002.sql"
+    }
   },
   "processes" : {
     "by_region_groupB##s1HfhwKD" : {

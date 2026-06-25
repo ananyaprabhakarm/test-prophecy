@@ -2,7 +2,7 @@
   "id" : "test_pipeline",
   "metainfo" : {
     "label" : "test_pipeline",
-    "autoLayout" : true,
+    "autoLayout" : false,
     "version" : 1,
     "configuration" : {
       "schema" : {

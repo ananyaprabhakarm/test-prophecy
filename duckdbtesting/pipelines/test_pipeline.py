@@ -1,6 +1,6 @@
 from prophecy_pipeline_sdk.graph import *
 from prophecy_pipeline_sdk.properties import *
-args = PipelineArgs(label = "test_pipeline", version = 1)
+args = PipelineArgs(label = "test_pipeline", version = 1, auto_layout = False)
 
 with Pipeline(args) as pipeline:
     test_pipeline__by_category_groupby_002 = Process(
