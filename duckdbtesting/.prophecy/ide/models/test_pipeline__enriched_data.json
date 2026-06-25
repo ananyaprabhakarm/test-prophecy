@@ -1,0 +1,162 @@
+{
+  "id" : "test_pipeline__enriched_data",
+  "metainfo" : {
+    "label" : "test_pipeline__enriched_data",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "materialized" : "ephemeral",
+        "database" : "\"dev_orchestration_inmemory\"",
+        "schema" : "\"schema\"",
+        "type" : "ModelConfig"
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "enriched_data_YNOwRl0G" : {
+      "id" : "enriched_data_YNOwRl0G",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "enriched_data"
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "\nSELECT *\n\nFROM enriched_data\n\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_2",
+          "slug" : "input_port_2"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_2",
+          "slug" : "output_port_2"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "enriched_data##w7cseeyM" : {
+      "id" : "enriched_data##w7cseeyM",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "enriched_data",
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "order_id"
+          },
+          "_row_id" : "1322299874"
+        }, {
+          "expression" : {
+            "expression" : "category"
+          },
+          "_row_id" : "632704219"
+        }, {
+          "expression" : {
+            "expression" : "region"
+          },
+          "_row_id" : "173440180"
+        }, {
+          "expression" : {
+            "expression" : "amount"
+          },
+          "_row_id" : "1153097575"
+        }, {
+          "expression" : {
+            "expression" : "order_date"
+          },
+          "_row_id" : "829487583"
+        }, {
+          "expression" : {
+            "expression" : "CASE\n  WHEN amount >= 500\n    THEN 'High'\n  WHEN amount >= 100\n    THEN 'Medium'\n  ELSE 'Low'\nEND"
+          },
+          "alias" : "order_tier",
+          "_row_id" : "1799967890"
+        }, {
+          "expression" : {
+            "expression" : "ROW_NUMBER() OVER (PARTITION BY category ORDER BY amount DESC)"
+          },
+          "alias" : "rank_in_category",
+          "_row_id" : "1435675523"
+        }, {
+          "expression" : {
+            "expression" : "ROW_NUMBER() OVER (PARTITION BY region ORDER BY amount DESC)"
+          },
+          "alias" : "rank_in_region",
+          "_row_id" : "460654139"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "MwWI1Sir",
+          "slug" : "source_data"
+        } ],
+        "outputs" : [ {
+          "id" : "YNOwRl0G",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "sample_data_U6ANj07t" : {
+      "id" : "sample_data_U6ANj07t",
+      "component" : "SQLStatement",
+      "metadata" : {
+        "label" : "sample_data"
+      },
+      "properties" : {
+        "fileTabs" : [ {
+          "path" : "output_port_0",
+          "id" : "output_port_0",
+          "language" : "sql",
+          "content" : "\nSELECT *\n\nFROM {{ ref('test_pipeline__sample_data') }}\n\n"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_0",
+          "slug" : "input_port_0"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_0",
+          "slug" : "output_port_0"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "conn_enriched_data##w7cseeyM_YNOwRl0G_enriched_data_YNOwRl0G",
+    "source" : "enriched_data##w7cseeyM",
+    "sourcePort" : "YNOwRl0G",
+    "target" : "enriched_data_YNOwRl0G",
+    "targetPort" : "input_port_2",
+    "isWireless" : false
+  }, {
+    "id" : "7V0HAHzV2O_to_efbNhvVFeu##SYf2ECQJ",
+    "source" : "sample_data_U6ANj07t",
+    "sourcePort" : "output_port_0",
+    "target" : "enriched_data##w7cseeyM",
+    "targetPort" : "MwWI1Sir",
+    "isWireless" : false
+  } ],
+  "component" : "Model"
+}

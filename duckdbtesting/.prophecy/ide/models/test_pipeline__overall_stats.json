@@ -1,0 +1,167 @@
+{
+  "id" : "test_pipeline__overall_stats",
+  "metainfo" : {
+    "label" : "test_pipeline__overall_stats",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "materialized" : "ephemeral",
+        "database" : "\"dev_orchestration_inmemory\"",
+        "schema" : "\"schema\"",
+        "type" : "ModelConfig"
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "overall_stats_s1SIyv7y" : {
+      "id" : "overall_stats_s1SIyv7y",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "overall_stats"
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "\nSELECT *\n\nFROM overall_stats\n\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_1",
+          "slug" : "input_port_1"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_1",
+          "slug" : "output_port_1"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "overall_stats##Lg9UpvoI" : {
+      "id" : "overall_stats##Lg9UpvoI",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "overall_stats",
+        "phase" : 0
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "COUNT(*)"
+          },
+          "alias" : "total_orders",
+          "_row_id" : "312872697"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(SUM(amount), 2)"
+          },
+          "alias" : "total_revenue",
+          "_row_id" : "2004396628"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(AVG(amount), 2)"
+          },
+          "alias" : "avg_order_value",
+          "_row_id" : "540803764"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(MIN(amount), 2)"
+          },
+          "alias" : "min_order",
+          "_row_id" : "1631321587"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(MAX(amount), 2)"
+          },
+          "alias" : "max_order",
+          "_row_id" : "951494159"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(STDDEV(amount), 2)"
+          },
+          "alias" : "stddev_amount",
+          "_row_id" : "1609898767"
+        }, {
+          "expression" : {
+            "expression" : "COUNT(DISTINCT category)"
+          },
+          "alias" : "unique_categories",
+          "_row_id" : "1624302447"
+        }, {
+          "expression" : {
+            "expression" : "COUNT(DISTINCT region)"
+          },
+          "alias" : "unique_regions",
+          "_row_id" : "1833449408"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "lB7IhDOM",
+          "slug" : "source_data"
+        } ],
+        "outputs" : [ {
+          "id" : "s1SIyv7y",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "sample_data_U6ANj07t" : {
+      "id" : "sample_data_U6ANj07t",
+      "component" : "SQLStatement",
+      "metadata" : {
+        "label" : "sample_data"
+      },
+      "properties" : {
+        "fileTabs" : [ {
+          "path" : "output_port_0",
+          "id" : "output_port_0",
+          "language" : "sql",
+          "content" : "\nSELECT *\n\nFROM {{ ref('test_pipeline__sample_data') }}\n\n"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_0",
+          "slug" : "input_port_0"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_0",
+          "slug" : "output_port_0"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "conn_overall_stats##Lg9UpvoI_s1SIyv7y_overall_stats_s1SIyv7y",
+    "source" : "overall_stats##Lg9UpvoI",
+    "sourcePort" : "s1SIyv7y",
+    "target" : "overall_stats_s1SIyv7y",
+    "targetPort" : "input_port_1",
+    "isWireless" : false
+  }, {
+    "id" : "7V0HAHzV2O_to_hhrNMXwlts##CNeXACFl",
+    "source" : "sample_data_U6ANj07t",
+    "sourcePort" : "output_port_0",
+    "target" : "overall_stats##Lg9UpvoI",
+    "targetPort" : "lB7IhDOM",
+    "isWireless" : false
+  } ],
+  "component" : "Model"
+}

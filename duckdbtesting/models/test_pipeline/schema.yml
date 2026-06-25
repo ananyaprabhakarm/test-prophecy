@@ -1,0 +1,18 @@
+---
+version: 2
+models:
+- name: "test_pipeline__by_category_groupBy_002"
+  tags:
+  - "prophecy_temp"
+- name: "test_pipeline__overall_stats"
+  tags:
+  - "prophecy_temp"
+- name: "test_pipeline__by_region_groupBy_002"
+  tags:
+  - "prophecy_temp"
+- name: "test_pipeline__enriched_data"
+  tags:
+  - "prophecy_temp"
+- name: "test_pipeline__sample_data"
+  tags:
+  - "prophecy_temp"
