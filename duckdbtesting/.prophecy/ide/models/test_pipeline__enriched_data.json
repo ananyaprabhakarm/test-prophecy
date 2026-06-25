@@ -53,6 +53,8 @@
       "component" : "Reformat",
       "metadata" : {
         "label" : "enriched_data",
+        "x" : 420,
+        "y" : 40,
         "phase" : 0
       },
       "properties" : {

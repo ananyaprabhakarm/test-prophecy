@@ -53,6 +53,8 @@
       "component" : "Reformat",
       "metadata" : {
         "label" : "sample_data",
+        "x" : 220,
+        "y" : 340,
         "phase" : 0
       },
       "properties" : {
@@ -77,6 +79,8 @@
       "component" : "SQLStatement",
       "metadata" : {
         "label" : "sample_data_union_union_000_union_000",
+        "x" : 20,
+        "y" : 340,
         "phase" : 0
       },
       "properties" : {

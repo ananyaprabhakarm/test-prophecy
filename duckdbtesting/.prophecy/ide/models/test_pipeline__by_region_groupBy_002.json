@@ -23,6 +23,8 @@
       "component" : "Aggregate",
       "metadata" : {
         "label" : "by_region_groupBy_002",
+        "x" : 820,
+        "y" : 560,
         "phase" : 0
       },
       "properties" : {
@@ -144,6 +146,8 @@
       "component" : "Reformat",
       "metadata" : {
         "label" : "by_region_from_000",
+        "x" : 420,
+        "y" : 580,
         "phase" : 0
       },
       "properties" : {
@@ -174,6 +178,8 @@
       "component" : "Join",
       "metadata" : {
         "label" : "by_region_from_001",
+        "x" : 620,
+        "y" : 560,
         "phase" : 0
       },
       "properties" : {

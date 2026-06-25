@@ -23,6 +23,8 @@
       "component" : "Aggregate",
       "metadata" : {
         "label" : "by_category_groupBy_002",
+        "x" : 780,
+        "y" : 200,
         "phase" : 0
       },
       "properties" : {
@@ -73,7 +75,7 @@
           "expression" : ""
         },
         "activeTab" : "aggregate",
-        "columnsSelector" : [ ],
+        "columnsSelector" : [ "r7ynZFwU##category", "r7ynZFwU##amount", "r7ynZFwU##count_sqe_000" ],
         "groupBy" : [ {
           "expression" : {
             "expression" : "category"
@@ -156,6 +158,8 @@
       "component" : "Reformat",
       "metadata" : {
         "label" : "by_category_from_000",
+        "x" : 420,
+        "y" : 240,
         "phase" : 0
       },
       "properties" : {
@@ -186,6 +190,8 @@
       "component" : "Join",
       "metadata" : {
         "label" : "by_category_from_001",
+        "x" : 600,
+        "y" : 340,
         "phase" : 0
       },
       "properties" : {
@@ -211,7 +217,7 @@
           "_row_id" : "347451675"
         } ],
         "activeTab" : "conditions",
-        "columnsSelector" : [ ],
+        "columnsSelector" : [ "KPFNVQGL##category", "KPFNVQGL##amount", "WY8J8SND##count_sqe_000" ],
         "headAlias" : "source_data"
       },
       "ports" : {
