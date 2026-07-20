@@ -1,0 +1,112 @@
+{
+  "id" : "testing_runstoredprocedure",
+  "metainfo" : {
+    "label" : "testing_runstoredprocedure",
+    "autoLayout" : false,
+    "version" : 1,
+    "configuration" : {
+      "schema" : {
+        "type" : "record",
+        "fields" : [ ]
+      }
+    },
+    "isTranspiledPipeline" : false
+  },
+  "processes" : {
+    "bsZkOS0VIA" : {
+      "id" : "bsZkOS0VIA",
+      "component" : "StoredProcedure",
+      "metadata" : {
+        "label" : "call_stored_proc",
+        "phase" : 0
+      },
+      "properties" : {
+        "parameters" : {
+          "a" : "NUM_A",
+          "b" : "NUM_B"
+        },
+        "passThroughColumns" : [ {
+          "alias" : "ID",
+          "expression" : {
+            "expression" : "ID"
+          }
+        }, {
+          "alias" : "NUM_A",
+          "expression" : {
+            "expression" : "NUM_A"
+          }
+        }, {
+          "alias" : "NUM_B",
+          "expression" : {
+            "expression" : "NUM_B"
+          }
+        } ],
+        "storedProcedureIdentifier" : "QA_DATABASE.QA_SCHEMA.test_add_numbers"
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "4AuOQWY3Rd",
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "AeI2n50Cfs",
+          "slug" : "out0"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "sSYLNCyNPk" : {
+      "id" : "sSYLNCyNPk",
+      "component" : "RunStoredProcedure",
+      "metadata" : {
+        "label" : "run_stored_proc",
+        "x" : 20,
+        "y" : 220,
+        "phase" : 0,
+        "comment" : "Executes a stored procedure to add numbers in the QA database for automated data processing.",
+        "autoUpdateComment" : true
+      },
+      "properties" : {
+        "connectionType" : "mssql",
+        "storedProcedure" : "QA_DATABASE.QA_SCHEMA.test_add_numbers(5, 10)"
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "Pz3uQx6zx9",
+          "slug" : "out0"
+        } ]
+      }
+    },
+    "hne6bqaF8E" : {
+      "id" : "hne6bqaF8E",
+      "component" : "Dataset",
+      "metadata" : {
+        "label" : "test_numbers_seed",
+        "phase" : 0
+      },
+      "properties" : {
+        "table" : {
+          "name" : "test_numbers",
+          "sourceType" : "Seed"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "TgQt4OGfW5",
+          "slug" : "out0"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "TgQt4OGfW5_to_4AuOQWY3Rd",
+    "source" : "hne6bqaF8E",
+    "sourcePort" : "TgQt4OGfW5",
+    "target" : "bsZkOS0VIA",
+    "targetPort" : "4AuOQWY3Rd"
+  } ],
+  "component" : "Pipeline"
+}
