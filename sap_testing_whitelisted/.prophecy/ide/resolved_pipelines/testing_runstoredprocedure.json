@@ -13,8 +13,34 @@
     "isTranspiledPipeline" : false
   },
   "processes" : {
-    "bsZkOS0VIA" : {
-      "id" : "bsZkOS0VIA",
+    "OTyffY6erT" : {
+      "id" : "OTyffY6erT",
+      "component" : "RunStoredProcedure",
+      "metadata" : {
+        "label" : "RunStoredProcedure_1",
+        "phase" : 0
+      },
+      "properties" : {
+        "connectionType" : "snowflake",
+        "connector" : {
+          "kind" : "snowflake",
+          "properties" : {
+            "id" : "snowflake_default"
+          },
+          "type" : "connector"
+        },
+        "storedProcedure" : "QA_DATABASE.QA_SCHEMA.test_add_numbers(5, 10)"
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "EM5M9KBZOs",
+          "slug" : "out0"
+        } ]
+      }
+    },
+    "izeeW0mI90" : {
+      "id" : "izeeW0mI90",
       "component" : "StoredProcedure",
       "metadata" : {
         "label" : "call_stored_proc",
@@ -45,41 +71,18 @@
       },
       "ports" : {
         "inputs" : [ {
-          "id" : "4AuOQWY3Rd",
+          "id" : "xVBP4anayd",
           "slug" : "in0"
         } ],
         "outputs" : [ {
-          "id" : "AeI2n50Cfs",
+          "id" : "z56UrUfyBw",
           "slug" : "out0"
         } ],
         "isCustomOutputSchema" : false
       }
     },
-    "sSYLNCyNPk" : {
-      "id" : "sSYLNCyNPk",
-      "component" : "RunStoredProcedure",
-      "metadata" : {
-        "label" : "run_stored_proc",
-        "x" : 20,
-        "y" : 220,
-        "phase" : 0,
-        "comment" : "Executes a stored procedure to add numbers in the QA database for automated data processing.",
-        "autoUpdateComment" : true
-      },
-      "properties" : {
-        "connectionType" : "mssql",
-        "storedProcedure" : "QA_DATABASE.QA_SCHEMA.test_add_numbers(5, 10)"
-      },
-      "ports" : {
-        "inputs" : [ ],
-        "outputs" : [ {
-          "id" : "Pz3uQx6zx9",
-          "slug" : "out0"
-        } ]
-      }
-    },
-    "hne6bqaF8E" : {
-      "id" : "hne6bqaF8E",
+    "AGQ4T0i3Z8" : {
+      "id" : "AGQ4T0i3Z8",
       "component" : "Dataset",
       "metadata" : {
         "label" : "test_numbers_seed",
@@ -94,7 +97,7 @@
       "ports" : {
         "inputs" : [ ],
         "outputs" : [ {
-          "id" : "TgQt4OGfW5",
+          "id" : "xfu7iPawY3",
           "slug" : "out0"
         } ],
         "isCustomOutputSchema" : false
@@ -102,11 +105,11 @@
     }
   },
   "connections" : [ {
-    "id" : "TgQt4OGfW5_to_4AuOQWY3Rd",
-    "source" : "hne6bqaF8E",
-    "sourcePort" : "TgQt4OGfW5",
-    "target" : "bsZkOS0VIA",
-    "targetPort" : "4AuOQWY3Rd"
+    "id" : "xfu7iPawY3_to_xVBP4anayd",
+    "source" : "AGQ4T0i3Z8",
+    "sourcePort" : "xfu7iPawY3",
+    "target" : "izeeW0mI90",
+    "targetPort" : "xVBP4anayd"
   } ],
   "component" : "Pipeline"
 }
