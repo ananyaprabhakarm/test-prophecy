@@ -1,0 +1,6 @@
+---
+version: 2
+models:
+- name: "pipp__Unpivot_1"
+  tags:
+  - "prophecy_temp"

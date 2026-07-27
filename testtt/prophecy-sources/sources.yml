@@ -1,0 +1,25 @@
+---
+version: 2
+sources:
+- name: "qa_team_qa_database"
+  database: "qa_team"
+  schema: "qa_database"
+  tables:
+  - name: "qa_table"
+    config:
+      tags:
+      - "pipeline:pipp"
+    columns:
+    - name: "max_fare_amount"
+      dataType:
+        type: "Bigint"
+    - name: "trip_distance"
+      dataType:
+        type: "Double"
+    - name: "tpep_pickup_date"
+      dataType:
+        type: "Date"
+    - name: "tpep_dropoff_date"
+      dataType:
+        type: "Date"
+    type: "table"

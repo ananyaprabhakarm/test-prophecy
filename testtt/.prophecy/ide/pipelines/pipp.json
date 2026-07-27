@@ -1,0 +1,303 @@
+{
+  "id" : "pipp",
+  "metainfo" : {
+    "label" : "pipp",
+    "autoLayout" : false,
+    "version" : 1,
+    "configuration" : {
+      "schema" : {
+        "type" : "record",
+        "fields" : [ ]
+      }
+    },
+    "isTranspiledPipeline" : false,
+    "publishDiagnosticMetrics" : false,
+    "processesVsModelFiles" : {
+      "E4T1YQBJnUCGfFB8yY46t$$iX-caPqmJlLFrFf2TsOJ4" : "models/pipp/pipp__DataEncoderDecoder_1.sql",
+      "Ors4RF81dvfuwe5zxcydl$$PfxvrngH3gr9K81HHh-q9" : "models/pipp/pipp__Unpivot_1.sql",
+      "6ri5a1zIPrvYr1qclN56Q$$Zq514Ibnrb9qpkv5MDXVh" : "models/pipp/pipp__DataEncoderDecoder_1.sql",
+      "Unpivot_1_vLq2MhUZO_D67iYs8rnuR$$QHiU8gGe_um9eEAzE4kku" : "models/pipp/pipp__Unpivot_1.sql",
+      "xZ7PslijgxOyy6LEEHUYD$$iE7WsHphsypSkES1AuCWQ" : "models/pipp/pipp__DataEncoderDecoder_1.sql",
+      "DataEncoderDecoder_1_yrnfOf7IYoZilUJpnSIi5$$GVxKTFI_Vq3fpioiSewTi" : "models/pipp/pipp__DataEncoderDecoder_1.sql"
+    }
+  },
+  "processes" : {
+    "eioYjVcS5_jpYt2VVrZj7$$ZCnOWP9qjamMniQ6r7kZB" : {
+      "id" : "eioYjVcS5_jpYt2VVrZj7$$ZCnOWP9qjamMniQ6r7kZB",
+      "component" : "Dataset",
+      "metadata" : {
+        "label" : "qa_table",
+        "x" : -560,
+        "y" : -420,
+        "phase" : 0
+      },
+      "properties" : {
+        "writeOptions" : {
+          "writeMode" : "overwrite"
+        },
+        "table" : {
+          "name" : "qa_table",
+          "sourceName" : "qa_team_qa_database",
+          "sourceType" : "Table"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "NJ4LwYbZx24xuuUoGBVXF$$019FmgOxXGe0DADS5exOq",
+          "slug" : "in"
+        } ],
+        "outputs" : [ {
+          "id" : "XAYO5mPVgirmgQZH2kz7W$$Pjc_PD5zouFZ7cZtWSB_P",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "E4T1YQBJnUCGfFB8yY46t$$iX-caPqmJlLFrFf2TsOJ4" : {
+      "id" : "E4T1YQBJnUCGfFB8yY46t$$iX-caPqmJlLFrFf2TsOJ4",
+      "component" : "CountRecords",
+      "metadata" : {
+        "label" : "CountRecords_1",
+        "x" : -400,
+        "y" : -560,
+        "phase" : 0
+      },
+      "properties" : {
+        "relation_name" : [ ],
+        "schema" : "",
+        "column_names" : [ ],
+        "count_method" : "count_all_records"
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "GT4VPeH81uV8Boi1xPNcZ$$1TPqH8Z8KO7vKBC-D2EY2",
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "o-itKyaDAe_P9sedd6Eas$$39VW7Bm3hR--GlByNi7oO",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      },
+      "componentInfo" : {
+        "gemId" : "CountRecords_prophecy_basics",
+        "name" : "CountRecords",
+        "projectName" : "prophecy_basics",
+        "sourceProjectName" : "prophecy_basics",
+        "sourceProjectVersion" : "1.0.16.dev2"
+      }
+    },
+    "Ors4RF81dvfuwe5zxcydl$$PfxvrngH3gr9K81HHh-q9" : {
+      "id" : "Ors4RF81dvfuwe5zxcydl$$PfxvrngH3gr9K81HHh-q9",
+      "component" : "DbUnpivot",
+      "metadata" : {
+        "label" : "Unpivot_1",
+        "x" : -173.63436889648438,
+        "y" : -631.5999755859375,
+        "phase" : 0
+      },
+      "properties" : {
+        "includeNulls" : null,
+        "inputAlias" : "in0",
+        "allowSelection" : true,
+        "dataColumns" : [ ],
+        "useCustomColumnNames" : false,
+        "valueColumn" : "Value",
+        "keyColumns" : [ ],
+        "nameColumn" : "Name"
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "6ywAB7qP3nEEYaI-HSBZy$$2jUz9ht3DQftiUxC3da87",
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "vLq2MhUZO_D67iYs8rnuR$$QHiU8gGe_um9eEAzE4kku",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "6ri5a1zIPrvYr1qclN56Q$$Zq514Ibnrb9qpkv5MDXVh" : {
+      "id" : "6ri5a1zIPrvYr1qclN56Q$$Zq514Ibnrb9qpkv5MDXVh",
+      "component" : "DataEncoderDecoder",
+      "metadata" : {
+        "label" : "DataEncoderDecoder_1",
+        "x" : -300,
+        "y" : -560,
+        "phase" : 0
+      },
+      "properties" : {
+        "prefix_suffix_option" : "Prefix",
+        "enc_dec_charSet" : "UTF-8",
+        "aes_enc_dec_secretKey_key" : "",
+        "aes_enc_dec_secretScope_aad" : "",
+        "aes_enc_dec_secretKey_aad" : "",
+        "aes_enc_dec_secretScope_iv" : "",
+        "relation_name" : [ ],
+        "new_column_add_method" : "inplace_substitute",
+        "enc_dec_method" : "",
+        "aes_enc_dec_secretScope_key" : "",
+        "aes_enc_dec_secretKey_iv" : "",
+        "schema" : "",
+        "column_names" : [ ],
+        "aes_enc_dec_mode" : "GCM",
+        "prefix_suffix_added" : "new_"
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "6O5oxt6ttxlxl-srLn4K5$$GyVcxlJZvozkEXGhGe9Vr",
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "yrnfOf7IYoZilUJpnSIi5$$GVxKTFI_Vq3fpioiSewTi",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      },
+      "componentInfo" : {
+        "gemId" : "DataEncoderDecoder_prophecy_basics",
+        "name" : "DataEncoderDecoder",
+        "projectName" : "prophecy_basics",
+        "sourceProjectName" : "prophecy_basics",
+        "sourceProjectVersion" : "1.0.16.dev2"
+      }
+    },
+    "xZ7PslijgxOyy6LEEHUYD$$iE7WsHphsypSkES1AuCWQ" : {
+      "id" : "xZ7PslijgxOyy6LEEHUYD$$iE7WsHphsypSkES1AuCWQ",
+      "component" : "Aggregate",
+      "metadata" : {
+        "label" : "Aggregate_1",
+        "x" : -620.0343627929688,
+        "y" : -581.2000122070312,
+        "phase" : 0
+      },
+      "properties" : {
+        "aggregate" : [ ],
+        "allowSelection" : true,
+        "condition" : {
+          "expression" : ""
+        },
+        "activeTab" : "aggregate",
+        "columnsSelector" : [ ],
+        "groupBy" : [ ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "sz7yx3BtgDuoN6pCOJiQ8$$YV5EkK9uU0ywZDPv29aV1",
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "n4lxJ-iyiZu29wfxjp66Z$$5chU-_VBkefUsYjNa6cwV",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "y3fL0LF5X7bLBEU3eEvwn$$xMGAxsxrGyhw9jW6-p6Qi" : {
+      "id" : "y3fL0LF5X7bLBEU3eEvwn$$xMGAxsxrGyhw9jW6-p6Qi",
+      "component" : "OrchestrationTarget",
+      "kind" : "SharepointTarget",
+      "metadata" : {
+        "label" : "OrchestrationTarget_2",
+        "x" : -809.6343994140625,
+        "y" : -554.7999877929688,
+        "phase" : 0
+      },
+      "properties" : {
+        "connector" : {
+          "kind" : "sharepoint",
+          "properties" : { },
+          "type" : "connector"
+        },
+        "properties" : { },
+        "format" : {
+          "properties" : {
+            "allowLazyQuotes" : false,
+            "allowEmptyColumnNames" : true,
+            "separator" : ",",
+            "nullValue" : "",
+            "enableSchemaMerging" : false,
+            "encoding" : "UTF-8",
+            "header" : true
+          },
+          "kind" : "csv",
+          "category" : "file"
+        },
+        "isNew" : true
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "nRcr9fSHFQs87UaFT24OC$$1MWry_bS1j4tkJONukQbo",
+          "slug" : "in"
+        } ],
+        "outputs" : [ ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "iTo4PhGqbTVZO9mVYk4ub$$IQIKjtiBftLEJu3wSWLkU" : {
+      "id" : "iTo4PhGqbTVZO9mVYk4ub$$IQIKjtiBftLEJu3wSWLkU",
+      "component" : "OrchestrationTarget",
+      "kind" : "SharepointTarget",
+      "metadata" : {
+        "label" : "OrchestrationTarget_1",
+        "x" : -220,
+        "y" : -420,
+        "phase" : 0
+      },
+      "properties" : {
+        "format" : {
+          "category" : "file",
+          "kind" : "csv",
+          "properties" : {
+            "allowLazyQuotes" : false,
+            "allowEmptyColumnNames" : true,
+            "separator" : ",",
+            "nullValue" : "",
+            "enableSchemaMerging" : false,
+            "encoding" : "UTF-8",
+            "header" : true
+          }
+        },
+        "compression" : {
+          "kind" : "uncompressed"
+        },
+        "properties" : { },
+        "isNew" : true,
+        "connector" : {
+          "kind" : "sharepoint",
+          "properties" : { },
+          "type" : "connector"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "FFxTd6Vljw1lLvXW9-Pzt$$PeUi9C9vABRCI0xOK1hkJ",
+          "slug" : "OrchestrationSource_0"
+        } ],
+        "outputs" : [ ],
+        "isCustomOutputSchema" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "k9ZVuaU6M8O56yy5bg2Ac$$lqs6A6eQSx943Spr8CeJT",
+    "source" : "eioYjVcS5_jpYt2VVrZj7$$ZCnOWP9qjamMniQ6r7kZB",
+    "sourcePort" : "XAYO5mPVgirmgQZH2kz7W$$Pjc_PD5zouFZ7cZtWSB_P",
+    "target" : "iTo4PhGqbTVZO9mVYk4ub$$IQIKjtiBftLEJu3wSWLkU",
+    "targetPort" : "FFxTd6Vljw1lLvXW9-Pzt$$PeUi9C9vABRCI0xOK1hkJ"
+  }, {
+    "id" : "nqg5oK9dYiGw_wuqhQDoA$$R7G_HEBbFfmAVjIbllt18",
+    "source" : "xZ7PslijgxOyy6LEEHUYD$$iE7WsHphsypSkES1AuCWQ",
+    "sourcePort" : "n4lxJ-iyiZu29wfxjp66Z$$5chU-_VBkefUsYjNa6cwV",
+    "target" : "E4T1YQBJnUCGfFB8yY46t$$iX-caPqmJlLFrFf2TsOJ4",
+    "targetPort" : "GT4VPeH81uV8Boi1xPNcZ$$1TPqH8Z8KO7vKBC-D2EY2"
+  }, {
+    "id" : "qiG1iiBoUzmopPCt-n-pn$$qj9jYfcocXAcY2CmnINkD",
+    "source" : "E4T1YQBJnUCGfFB8yY46t$$iX-caPqmJlLFrFf2TsOJ4",
+    "sourcePort" : "o-itKyaDAe_P9sedd6Eas$$39VW7Bm3hR--GlByNi7oO",
+    "target" : "6ri5a1zIPrvYr1qclN56Q$$Zq514Ibnrb9qpkv5MDXVh",
+    "targetPort" : "6O5oxt6ttxlxl-srLn4K5$$GyVcxlJZvozkEXGhGe9Vr"
+  } ],
+  "component" : "Pipeline"
+}

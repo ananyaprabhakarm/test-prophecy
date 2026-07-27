@@ -36,8 +36,46 @@ sqlMacros:
     - macros/generate_schema_name.sql
     - .prophecy/ide/macros/generate_schema_name.json
     createdAt: '2026-07-27 10:35:07'
+  .prophecy/metadata/sqlmacros/prophecy_tmp_source:
+    name: prophecy_tmp_source
+    macroType: expression
+    description: null
+    author: abhisheks+e2etests@prophecy.io
+    files:
+    - macros/prophecy_tmp_source.sql
+    - .prophecy/ide/macros/prophecy_tmp_source.json
+    createdAt: '2026-07-27 10:37:16'
 sqlSeeds: {}
-sqlSources: {}
+sqlSources:
+  .prophecy/metadata/sqlsources/qa_team_qa_database:
+    name: qa_team_qa_database
+    description: null
+    author: abhisheks+e2etests@prophecy.io
+    files:
+    - prophecy-sources/sources.yml
+    createdAt: '2026-07-27 10:44:59'
+    tables:
+    - name: qa_table
+      schema:
+        entityType: ''
+        providerType: databricks
+        fields:
+        - name: max_fare_amount
+          dataType:
+            type: Bigint
+        - name: trip_distance
+          dataType:
+            type: Double
+        - name: tpep_pickup_date
+          dataType:
+            type: Date
+        - name: tpep_dropoff_date
+          dataType:
+            type: Date
+      description: null
+      author: abhisheks+e2etests@prophecy.io
+      createdAt: '2026-07-27 10:44:59'
+      tableType: table
 sqlUnreferencedSources: {}
 sqlPipeline:
   name: sqlPipeline
@@ -58,6 +96,19 @@ flags:
   shouldAddDefaultDependenciesIfAbsent: true
 pipelineConfigurations: {}
 projectConfigurations: {}
+sqlOrchestratorPipelines:
+  .prophecy/metadata/sqlorchestratorpipeline/pipp:
+    name: pipp
+    schema: null
+    description: null
+    author: abhisheks+e2etests@prophecy.io
+    files:
+    - .prophecy/ide/pipelines/pipp.json
+    - pipelines/pipp.py
+    - models/pipp/schema.yml
+    - models/pipp/pipp__Unpivot_1.sql
+    createdAt: '2026-07-27 10:37:16'
+sqlBusinessApps: {}
 dbtDependencies:
 - packageName: dbt-labs/dbt_utils
   version: 1.3.3
