@@ -1,0 +1,345 @@
+{
+  "id" : "newone",
+  "metainfo" : {
+    "label" : "newone",
+    "autoLayout" : false,
+    "staleState" : "file",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "j-TdGSjIoD38z8ii8D0s9$$MQXpdUH8jk9NCJ-9EgbO4" : {
+      "id" : "j-TdGSjIoD38z8ii8D0s9$$MQXpdUH8jk9NCJ-9EgbO4",
+      "component" : "DataCleansing",
+      "metadata" : {
+        "label" : "DataCleansing_1",
+        "slug" : "DataCleansing_1",
+        "x" : -259.3999938964844,
+        "y" : 128.89999389648438,
+        "phase" : 0,
+        "macroDependencies" : [ ]
+      },
+      "properties" : {
+        "trimWhiteSpace" : false,
+        "replaceNullForNumericFields" : false,
+        "cleanLetters" : false,
+        "replaceNullTextWith" : "NA",
+        "removeRowNullAllCols" : false,
+        "replaceNullTextFields" : false,
+        "relation_name" : [ ],
+        "replaceNullDateWith" : "1970-01-01",
+        "columnNames" : [ ],
+        "replaceNullTimeFields" : false,
+        "replaceNullTimeWith" : "1970-01-01 00:00:00.0",
+        "schema" : "",
+        "allWhiteSpace" : false,
+        "removeTabsLineBreaksAndDuplicateWhitespace" : false,
+        "modifyCase" : "Keep original",
+        "cleanPunctuations" : false,
+        "replaceNullDateFields" : false,
+        "cleanNumbers" : false,
+        "replaceNullNumericWith" : 0
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "AU2Yh1q410X2fSI40XYB1$$vnUgbsj8doZi_Hx3H8yKW",
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "7Js7YimkpDi2Z6bGDW7IC$$mAFTO-qVoS9snZtdtN2A4",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "componentInfo" : {
+        "gemId" : "DataCleansing_prophecy_basics",
+        "name" : "DataCleansing",
+        "projectName" : "prophecy_basics",
+        "sourceProjectName" : "prophecy_basics",
+        "sourceProjectVersion" : "1.0.16.dev2"
+      }
+    },
+    "BWlX805C8Pe6omntwVT4c$$iJfnfs-sad2qLkmez--Bb" : {
+      "id" : "BWlX805C8Pe6omntwVT4c$$iJfnfs-sad2qLkmez--Bb",
+      "component" : "DataEncoderDecoder",
+      "metadata" : {
+        "label" : "DataEncoderDecoder_1",
+        "slug" : "DataEncoderDecoder_1",
+        "x" : -320,
+        "y" : -300,
+        "phase" : 0,
+        "macroDependencies" : [ ]
+      },
+      "properties" : {
+        "prefix_suffix_option" : "Prefix",
+        "enc_dec_charSet" : "UTF-8",
+        "aes_enc_dec_secretKey_key" : "",
+        "aes_enc_dec_secretScope_aad" : "",
+        "aes_enc_dec_secretKey_aad" : "",
+        "aes_enc_dec_secretScope_iv" : "",
+        "relation_name" : [ ],
+        "new_column_add_method" : "inplace_substitute",
+        "enc_dec_method" : "",
+        "aes_enc_dec_secretScope_key" : "",
+        "aes_enc_dec_secretKey_iv" : "",
+        "schema" : "",
+        "column_names" : [ ],
+        "aes_enc_dec_mode" : "GCM",
+        "prefix_suffix_added" : "new_"
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "_Xt9eIndn-jkvxIMtpil9$$izaE1ZajTGi3gFkE-moNQ",
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "jiul7U3uTJvxLEEF0uuX1$$kIYZq_zgl6SP94NcVluOQ",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "componentInfo" : {
+        "gemId" : "DataEncoderDecoder_prophecy_basics",
+        "name" : "DataEncoderDecoder",
+        "projectName" : "prophecy_basics",
+        "sourceProjectName" : "prophecy_basics",
+        "sourceProjectVersion" : "1.0.16.dev2"
+      }
+    },
+    "om8gKzJr4qXqB_NkbxOCB$$GLJ_fCmmPygN7SU91Z_py" : {
+      "id" : "om8gKzJr4qXqB_NkbxOCB$$GLJ_fCmmPygN7SU91Z_py",
+      "component" : "DynamicSelect",
+      "metadata" : {
+        "label" : "DynamicSelect_1",
+        "slug" : "DynamicSelect_1",
+        "x" : -520,
+        "y" : -360,
+        "phase" : 0,
+        "macroDependencies" : [ ]
+      },
+      "properties" : {
+        "targetTypes" : "",
+        "structTypeChecked" : false,
+        "relation_name" : [ ],
+        "dateTypeChecked" : false,
+        "binaryTypeChecked" : false,
+        "strTypeChecked" : false,
+        "floatTypeChecked" : false,
+        "timestampTypeChecked" : false,
+        "boolTypeChecked" : false,
+        "schema" : "",
+        "customExpression" : "",
+        "longTypeChecked" : false,
+        "doubleTypeChecked" : false,
+        "intTypeChecked" : false,
+        "byteTypeChecked" : false,
+        "decimalTypeChecked" : false,
+        "selectUsing" : "SELECT_FIELD_TYPES",
+        "shortTypeChecked" : false
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "WX3rfY_d_5GdS3T1Kq188$$sLE5vchFrfBdg_fCEPvHP",
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "p0Vv4qM1UM6CTYj35HjVA$$EW5O4oYdUJ-DAhBnKU1-6",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "componentInfo" : {
+        "gemId" : "DynamicSelect_prophecy_basics",
+        "name" : "DynamicSelect",
+        "projectName" : "prophecy_basics",
+        "sourceProjectName" : "prophecy_basics",
+        "sourceProjectVersion" : "1.0.16.dev2"
+      }
+    },
+    "TrMgr3Zsq-l8S8kO26sn7$$u4WykWrX0GjPesicf9NZm" : {
+      "id" : "TrMgr3Zsq-l8S8kO26sn7$$u4WykWrX0GjPesicf9NZm",
+      "component" : "FuzzyMatch",
+      "metadata" : {
+        "label" : "FuzzyMatch_1",
+        "slug" : "FuzzyMatch_1",
+        "x" : 100,
+        "y" : -340,
+        "phase" : 0,
+        "macroDependencies" : [ ]
+      },
+      "properties" : {
+        "relation_name" : [ "" ],
+        "includeSimilarityScore" : false,
+        "_oldMacroProperties" : {
+          "macroName" : "FuzzyMatch",
+          "projectName" : "prophecy_basics",
+          "parameters" : [ {
+            "name" : "relation_name",
+            "value" : "[\"\"]"
+          }, {
+            "name" : "mode",
+            "value" : ""
+          }, {
+            "name" : "sourceIdCol",
+            "value" : ""
+          }, {
+            "name" : "recordIdCol",
+            "value" : ""
+          }, {
+            "name" : "matchThresholdPercentage",
+            "value" : "80"
+          }, {
+            "name" : "includeSimilarityScore",
+            "value" : "false"
+          }, {
+            "name" : "matchFields",
+            "value" : "[]"
+          } ]
+        },
+        "matchFields" : [ ],
+        "sourceIdCol" : "",
+        "matchThresholdPercentage" : 80,
+        "activeTab" : "configuration",
+        "recordIdCol" : "",
+        "mode" : ""
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "fGx5BvUKCpA-pCEQDbJlz$$bi2KHWQdybemneAj-nJC0",
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "hCss8W8eOz2HI6cw-1lmn$$_xxE3GExz5hpNwm-DGD1s",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "componentInfo" : {
+        "gemId" : "FuzzyMatch_prophecy_basics",
+        "name" : "FuzzyMatch",
+        "projectName" : "prophecy_basics",
+        "sourceProjectName" : "prophecy_basics",
+        "sourceProjectVersion" : "1.0.16.dev2"
+      }
+    },
+    "1h97Sa1eebXUE1rDYHSqc$$ygcEnqXx_IXXSMxb1NJJC" : {
+      "id" : "1h97Sa1eebXUE1rDYHSqc$$ygcEnqXx_IXXSMxb1NJJC",
+      "component" : "CountRecords",
+      "metadata" : {
+        "label" : "CountRecords_1",
+        "slug" : "CountRecords_1",
+        "x" : -516.4000244140625,
+        "y" : -154.10000610351562,
+        "phase" : 0,
+        "macroDependencies" : [ ]
+      },
+      "properties" : {
+        "relation_name" : [ ],
+        "schema" : "",
+        "column_names" : [ ],
+        "count_method" : "count_all_records"
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "YUsEjkZVY9y7CH1LYonQL$$olGQ9CnSleHqXveR2bLaY",
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "RAWDntiqh2nfJ74J2P0P6$$I3mqt0RihSfoYVEssTYOG",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "componentInfo" : {
+        "gemId" : "CountRecords_prophecy_basics",
+        "name" : "CountRecords",
+        "projectName" : "prophecy_basics",
+        "sourceProjectName" : "prophecy_basics",
+        "sourceProjectVersion" : "1.0.16.dev2"
+      }
+    },
+    "1HYKzEnR22af-EnT_Oaki$$C7hxtEIeDWYC-rArQ7qqp" : {
+      "id" : "1HYKzEnR22af-EnT_Oaki$$C7hxtEIeDWYC-rArQ7qqp",
+      "component" : "Aggregate",
+      "metadata" : {
+        "label" : "Aggregate_1",
+        "slug" : "Aggregate_1",
+        "x" : -123.4000015258789,
+        "y" : -151.10000610351562,
+        "phase" : 0,
+        "macroDependencies" : [ ]
+      },
+      "properties" : {
+        "aggregate" : [ ],
+        "allowSelection" : true,
+        "condition" : {
+          "expression" : ""
+        },
+        "activeTab" : "aggregate",
+        "columnsSelector" : [ ],
+        "groupBy" : [ ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "1pemq22cLfuCDHRfp5Gmj$$9BXObgRq5QibXmbsro6ZY",
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "7i9X-0-TWnEw9Nn2_t0p1$$yDvOwx_3c2lPZxuWKqMY-",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "newone##Dxhc8Paz" : {
+      "id" : "newone##Dxhc8Paz",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "newone",
+        "x" : 20,
+        "y" : 20,
+        "phase" : 0,
+        "macroDependencies" : [ ]
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "SELECT * \n\nFROM in0\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "AYG6B5Em",
+          "slug" : "in0"
+        } ],
+        "outputs" : [ {
+          "id" : "Atvy0DmE",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "jFKnsVWE4sk2ncbpM77J_$$9KsY96tub_V8AR5gW82Ii",
+    "source" : "1h97Sa1eebXUE1rDYHSqc$$ygcEnqXx_IXXSMxb1NJJC",
+    "sourcePort" : "RAWDntiqh2nfJ74J2P0P6$$I3mqt0RihSfoYVEssTYOG",
+    "target" : "BWlX805C8Pe6omntwVT4c$$iJfnfs-sad2qLkmez--Bb",
+    "targetPort" : "_Xt9eIndn-jkvxIMtpil9$$izaE1ZajTGi3gFkE-moNQ"
+  } ],
+  "component" : "Model"
+}
