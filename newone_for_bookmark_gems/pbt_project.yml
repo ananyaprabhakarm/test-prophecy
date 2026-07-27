@@ -1,6 +1,6 @@
 name: testing_shared
 description: ''
-version: 0.0.1
+version: nwonone
 author: abhisheks+e2etests@prophecy.io
 language: sql
 buildSystem: ''
