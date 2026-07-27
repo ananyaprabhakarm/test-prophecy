@@ -1,0 +1,19 @@
+{
+  "id" : "testpip",
+  "metainfo" : {
+    "label" : "testpip",
+    "autoLayout" : false,
+    "version" : 1,
+    "configuration" : {
+      "schema" : {
+        "type" : "record",
+        "fields" : [ ]
+      }
+    },
+    "isTranspiledPipeline" : false,
+    "publishDiagnosticMetrics" : false
+  },
+  "processes" : { },
+  "connections" : [ ],
+  "component" : "Pipeline"
+}
