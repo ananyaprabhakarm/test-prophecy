@@ -1,0 +1,216 @@
+{
+  "id" : "sample_test_pipeline__sorted_roles",
+  "metainfo" : {
+    "label" : "sample_test_pipeline__sorted_roles",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "materialized" : "ephemeral",
+        "database" : "\"qa_team\"",
+        "schema" : "\"qa_orchestration\"",
+        "type" : "ModelConfig"
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "sorted_roles_LXYQ3Ltg" : {
+      "id" : "sorted_roles_LXYQ3Ltg",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "sorted_roles"
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "\nSELECT *\n\nFROM sorted_roles\n\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_1",
+          "slug" : "input_port_1"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_1",
+          "slug" : "output_port_1"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "sorted_roles##EuBTYOXo" : {
+      "id" : "sorted_roles##EuBTYOXo",
+      "component" : "OrderBy",
+      "metadata" : {
+        "label" : "sorted_roles",
+        "x" : 960,
+        "y" : 540,
+        "phase" : 0,
+        "leadingComment" : " OrderBy gem: Sort by headcount descending"
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "orders" : [ {
+          "expression" : {
+            "expression" : "headcount"
+          },
+          "sortType" : "desc"
+        }, {
+          "expression" : {
+            "expression" : "avg_salary"
+          },
+          "sortType" : "desc"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "zbsJEe6x",
+          "slug" : "role_distribution"
+        } ],
+        "outputs" : [ {
+          "id" : "LXYQ3Ltg",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "role_distributio##mhzkxp0O" : {
+      "id" : "role_distributio##mhzkxp0O",
+      "component" : "Aggregate",
+      "metadata" : {
+        "label" : "role_distribution",
+        "x" : 760,
+        "y" : 540,
+        "phase" : 0,
+        "leadingComment" : " Aggregate gem: Role distribution with salary insights"
+      },
+      "properties" : {
+        "aggregate" : [ {
+          "expression" : {
+            "expression" : "job_title"
+          },
+          "_row_id" : "1807553208"
+        }, {
+          "expression" : {
+            "expression" : "dept"
+          },
+          "_row_id" : "260423453"
+        }, {
+          "expression" : {
+            "expression" : "COUNT(*)"
+          },
+          "alias" : "headcount",
+          "_row_id" : "669179828"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(AVG(annual_salary), 2)"
+          },
+          "alias" : "avg_salary",
+          "_row_id" : "1078957572"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(MIN(annual_salary), 2)"
+          },
+          "alias" : "min_salary",
+          "_row_id" : "215436843"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(MAX(annual_salary), 2)"
+          },
+          "alias" : "max_salary",
+          "_row_id" : "1153979570"
+        } ],
+        "allowSelection" : true,
+        "condition" : {
+          "expression" : ""
+        },
+        "activeTab" : "aggregate",
+        "columnsSelector" : [ ],
+        "groupBy" : [ {
+          "expression" : {
+            "expression" : "job_title"
+          },
+          "_row_id" : "1079653708"
+        }, {
+          "expression" : {
+            "expression" : "dept"
+          },
+          "_row_id" : "543706738"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "COluIMxv",
+          "slug" : "reformat_employees"
+        } ],
+        "outputs" : [ {
+          "id" : "ySd5Wyzc",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "reformat_employees_FjjRIPYi" : {
+      "id" : "reformat_employees_FjjRIPYi",
+      "component" : "SQLStatement",
+      "metadata" : {
+        "label" : "reformat_employees"
+      },
+      "properties" : {
+        "fileTabs" : [ {
+          "path" : "output_port_0",
+          "id" : "output_port_0",
+          "language" : "sql",
+          "content" : "\nSELECT *\n\nFROM {{ ref('sample_test_pipeline__reformat_employees') }}\n\n"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_0",
+          "slug" : "input_port_0"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_0",
+          "slug" : "output_port_0"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "conn_sorted_roles##EuBTYOXo_LXYQ3Ltg_sorted_roles_LXYQ3Ltg",
+    "source" : "sorted_roles##EuBTYOXo",
+    "sourcePort" : "LXYQ3Ltg",
+    "target" : "sorted_roles_LXYQ3Ltg",
+    "targetPort" : "input_port_1",
+    "isWireless" : false
+  }, {
+    "id" : "erEcSvWi",
+    "source" : "role_distributio##mhzkxp0O",
+    "sourcePort" : "ySd5Wyzc",
+    "target" : "sorted_roles##EuBTYOXo",
+    "targetPort" : "zbsJEe6x",
+    "isWireless" : false
+  }, {
+    "id" : "gjssul4AS4_to_kYaFf5CmVe##YO52CGCd",
+    "source" : "reformat_employees_FjjRIPYi",
+    "sourcePort" : "output_port_0",
+    "target" : "role_distributio##mhzkxp0O",
+    "targetPort" : "COluIMxv",
+    "isWireless" : false
+  } ],
+  "component" : "Model"
+}

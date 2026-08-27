@@ -1,0 +1,172 @@
+{
+  "id" : "sample_test_pipeline__age_group_analysis",
+  "metainfo" : {
+    "label" : "sample_test_pipeline__age_group_analysis",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "materialized" : "ephemeral",
+        "database" : "\"qa_team\"",
+        "schema" : "\"qa_orchestration\"",
+        "type" : "ModelConfig"
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "age_group_analysis_nn6nItQI" : {
+      "id" : "age_group_analysis_nn6nItQI",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "age_group_analysis"
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "\nSELECT *\n\nFROM age_group_analysis\n\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_4",
+          "slug" : "input_port_4"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_4",
+          "slug" : "output_port_4"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "age_group_analys##UwYVCDSE" : {
+      "id" : "age_group_analys##UwYVCDSE",
+      "component" : "Aggregate",
+      "metadata" : {
+        "label" : "age_group_analysis",
+        "phase" : 0,
+        "leadingComment" : "Aggregate gem: Age group distribution analysis"
+      },
+      "properties" : {
+        "aggregate" : [ {
+          "expression" : {
+            "expression" : "age_group"
+          },
+          "_row_id" : "1260915000"
+        }, {
+          "expression" : {
+            "expression" : "COUNT(*)"
+          },
+          "alias" : "total_people",
+          "_row_id" : "761086229"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(AVG(age), 1)"
+          },
+          "alias" : "avg_age",
+          "_row_id" : "363292012"
+        }, {
+          "expression" : {
+            "expression" : "MIN(age)"
+          },
+          "alias" : "min_age",
+          "_row_id" : "2117063401"
+        }, {
+          "expression" : {
+            "expression" : "MAX(age)"
+          },
+          "alias" : "max_age",
+          "_row_id" : "1706701494"
+        }, {
+          "expression" : {
+            "expression" : "COUNT(DISTINCT country)"
+          },
+          "alias" : "countries_represented",
+          "_row_id" : "1154092462"
+        }, {
+          "expression" : {
+            "expression" : "COUNT(DISTINCT gender)"
+          },
+          "alias" : "gender_diversity",
+          "_row_id" : "323687246"
+        } ],
+        "allowSelection" : true,
+        "condition" : {
+          "expression" : ""
+        },
+        "activeTab" : "aggregate",
+        "columnsSelector" : [ ],
+        "groupBy" : [ {
+          "expression" : {
+            "expression" : "age_group"
+          },
+          "_row_id" : "809794098"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "ZBj4ctTc",
+          "slug" : "reformat_people"
+        } ],
+        "outputs" : [ {
+          "id" : "nn6nItQI",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "reformat_people_AKVg3xbY" : {
+      "id" : "reformat_people_AKVg3xbY",
+      "component" : "SQLStatement",
+      "metadata" : {
+        "label" : "reformat_people"
+      },
+      "properties" : {
+        "fileTabs" : [ {
+          "path" : "output_port_1",
+          "id" : "output_port_1",
+          "language" : "sql",
+          "content" : "\nSELECT *\n\nFROM {{ ref('sample_test_pipeline__reformat_people') }}\n\n"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_1",
+          "slug" : "input_port_1"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_1",
+          "slug" : "output_port_1"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "conn_age_group_analys##UwYVCDSE_nn6nItQI_age_group_analysis_nn6nItQI",
+    "source" : "age_group_analys##UwYVCDSE",
+    "sourcePort" : "nn6nItQI",
+    "target" : "age_group_analysis_nn6nItQI",
+    "targetPort" : "input_port_4",
+    "isWireless" : false
+  }, {
+    "id" : "B6SIpno8Sk_to_zO9Df8WRPQ##k20euNs2",
+    "source" : "reformat_people_AKVg3xbY",
+    "sourcePort" : "output_port_1",
+    "target" : "age_group_analys##UwYVCDSE",
+    "targetPort" : "ZBj4ctTc",
+    "isWireless" : false
+  } ],
+  "component" : "Model"
+}

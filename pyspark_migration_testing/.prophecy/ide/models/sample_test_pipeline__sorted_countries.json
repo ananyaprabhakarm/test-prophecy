@@ -1,0 +1,215 @@
+{
+  "id" : "sample_test_pipeline__sorted_countries",
+  "metainfo" : {
+    "label" : "sample_test_pipeline__sorted_countries",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "materialized" : "ephemeral",
+        "database" : "\"qa_team\"",
+        "schema" : "\"qa_orchestration\"",
+        "type" : "ModelConfig"
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "sorted_countries_aps6Pviu" : {
+      "id" : "sorted_countries_aps6Pviu",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "sorted_countries"
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "\nSELECT *\n\nFROM sorted_countries\n\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_3",
+          "slug" : "input_port_3"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_3",
+          "slug" : "output_port_3"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "sorted_countries##Ji7orwfy" : {
+      "id" : "sorted_countries##Ji7orwfy",
+      "component" : "OrderBy",
+      "metadata" : {
+        "label" : "sorted_countries",
+        "phase" : 0,
+        "leadingComment" : "OrderBy gem: Sort by total people descending"
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "orders" : [ {
+          "expression" : {
+            "expression" : "total_people"
+          },
+          "sortType" : "desc"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "admky5ea",
+          "slug" : "country_demographics"
+        } ],
+        "outputs" : [ {
+          "id" : "aps6Pviu",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "country_demograp##sIj1OVJA" : {
+      "id" : "country_demograp##sIj1OVJA",
+      "component" : "Aggregate",
+      "metadata" : {
+        "label" : "country_demographics",
+        "phase" : 0,
+        "leadingComment" : "Aggregate gem: Country demographics analysis"
+      },
+      "properties" : {
+        "aggregate" : [ {
+          "expression" : {
+            "expression" : "country"
+          },
+          "_row_id" : "901177387"
+        }, {
+          "expression" : {
+            "expression" : "COUNT(*)"
+          },
+          "alias" : "total_people",
+          "_row_id" : "1426979269"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(AVG(age), 1)"
+          },
+          "alias" : "avg_age",
+          "_row_id" : "1199268053"
+        }, {
+          "expression" : {
+            "expression" : "MIN(age)"
+          },
+          "alias" : "min_age",
+          "_row_id" : "1812197427"
+        }, {
+          "expression" : {
+            "expression" : "MAX(age)"
+          },
+          "alias" : "max_age",
+          "_row_id" : "1217314764"
+        }, {
+          "expression" : {
+            "expression" : "SUM(CASE\n  WHEN gender = 'Male'\n    THEN 1\n  ELSE 0\nEND)"
+          },
+          "alias" : "male_count",
+          "_row_id" : "1984048473"
+        }, {
+          "expression" : {
+            "expression" : "SUM(CASE\n  WHEN gender = 'Female'\n    THEN 1\n  ELSE 0\nEND)"
+          },
+          "alias" : "female_count",
+          "_row_id" : "227699378"
+        }, {
+          "expression" : {
+            "expression" : "COUNT(DISTINCT age_group)"
+          },
+          "alias" : "age_groups_present",
+          "_row_id" : "803243603"
+        } ],
+        "allowSelection" : true,
+        "condition" : {
+          "expression" : ""
+        },
+        "activeTab" : "aggregate",
+        "columnsSelector" : [ ],
+        "groupBy" : [ {
+          "expression" : {
+            "expression" : "country"
+          },
+          "_row_id" : "369205102"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "GA7omJ3Y",
+          "slug" : "reformat_people"
+        } ],
+        "outputs" : [ {
+          "id" : "rs7uDntO",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "reformat_people_AKVg3xbY" : {
+      "id" : "reformat_people_AKVg3xbY",
+      "component" : "SQLStatement",
+      "metadata" : {
+        "label" : "reformat_people"
+      },
+      "properties" : {
+        "fileTabs" : [ {
+          "path" : "output_port_1",
+          "id" : "output_port_1",
+          "language" : "sql",
+          "content" : "\nSELECT *\n\nFROM {{ ref('sample_test_pipeline__reformat_people') }}\n\n"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_1",
+          "slug" : "input_port_1"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_1",
+          "slug" : "output_port_1"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "conn_sorted_countries##Ji7orwfy_aps6Pviu_sorted_countries_aps6Pviu",
+    "source" : "sorted_countries##Ji7orwfy",
+    "sourcePort" : "aps6Pviu",
+    "target" : "sorted_countries_aps6Pviu",
+    "targetPort" : "input_port_3",
+    "isWireless" : false
+  }, {
+    "id" : "SJyqeZZR",
+    "source" : "country_demograp##sIj1OVJA",
+    "sourcePort" : "rs7uDntO",
+    "target" : "sorted_countries##Ji7orwfy",
+    "targetPort" : "admky5ea",
+    "isWireless" : false
+  }, {
+    "id" : "B6SIpno8Sk_to_kiTquGNOnc##vjdVKI6S",
+    "source" : "reformat_people_AKVg3xbY",
+    "sourcePort" : "output_port_1",
+    "target" : "country_demograp##sIj1OVJA",
+    "targetPort" : "GA7omJ3Y",
+    "isWireless" : false
+  } ],
+  "component" : "Model"
+}

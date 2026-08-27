@@ -1,0 +1,15 @@
+---
+version: 2
+models:
+- name: "sample_test_pipeline__sorted_countries"
+  tags:
+  - "prophecy_temp"
+- name: "sample_test_pipeline__age_group_analysis"
+  tags:
+  - "prophecy_temp"
+- name: "sample_test_pipeline__reformat_people"
+  tags:
+  - "prophecy_temp"
+- name: "sample_test_pipeline__sorted_genders"
+  tags:
+  - "prophecy_temp"

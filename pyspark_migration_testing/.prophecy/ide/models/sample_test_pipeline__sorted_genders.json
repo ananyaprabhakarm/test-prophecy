@@ -1,0 +1,209 @@
+{
+  "id" : "sample_test_pipeline__sorted_genders",
+  "metainfo" : {
+    "label" : "sample_test_pipeline__sorted_genders",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "materialized" : "ephemeral",
+        "database" : "\"qa_team\"",
+        "schema" : "\"qa_orchestration\"",
+        "type" : "ModelConfig"
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "sorted_genders_xvBXOxgo" : {
+      "id" : "sorted_genders_xvBXOxgo",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "sorted_genders"
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "\nSELECT *\n\nFROM sorted_genders\n\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_2",
+          "slug" : "input_port_2"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_2",
+          "slug" : "output_port_2"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "sorted_genders##NU0rLjZj" : {
+      "id" : "sorted_genders##NU0rLjZj",
+      "component" : "OrderBy",
+      "metadata" : {
+        "label" : "sorted_genders",
+        "phase" : 0,
+        "leadingComment" : "OrderBy gem: Sort by total people descending"
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "orders" : [ {
+          "expression" : {
+            "expression" : "total_people"
+          },
+          "sortType" : "desc"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "yJzbr810",
+          "slug" : "gender_analysis"
+        } ],
+        "outputs" : [ {
+          "id" : "xvBXOxgo",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "gender_analysis##zRKe8knQ" : {
+      "id" : "gender_analysis##zRKe8knQ",
+      "component" : "Aggregate",
+      "metadata" : {
+        "label" : "gender_analysis",
+        "phase" : 0,
+        "leadingComment" : "Aggregate gem: Gender distribution analysis"
+      },
+      "properties" : {
+        "aggregate" : [ {
+          "expression" : {
+            "expression" : "gender"
+          },
+          "_row_id" : "860244157"
+        }, {
+          "expression" : {
+            "expression" : "COUNT(*)"
+          },
+          "alias" : "total_people",
+          "_row_id" : "488030946"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(AVG(age), 1)"
+          },
+          "alias" : "avg_age",
+          "_row_id" : "689663533"
+        }, {
+          "expression" : {
+            "expression" : "MIN(age)"
+          },
+          "alias" : "min_age",
+          "_row_id" : "198178436"
+        }, {
+          "expression" : {
+            "expression" : "MAX(age)"
+          },
+          "alias" : "max_age",
+          "_row_id" : "1911382249"
+        }, {
+          "expression" : {
+            "expression" : "COUNT(DISTINCT country)"
+          },
+          "alias" : "countries_represented",
+          "_row_id" : "2135996287"
+        }, {
+          "expression" : {
+            "expression" : "COUNT(DISTINCT age_group)"
+          },
+          "alias" : "age_groups_present",
+          "_row_id" : "1440371163"
+        } ],
+        "allowSelection" : true,
+        "condition" : {
+          "expression" : ""
+        },
+        "activeTab" : "aggregate",
+        "columnsSelector" : [ ],
+        "groupBy" : [ {
+          "expression" : {
+            "expression" : "gender"
+          },
+          "_row_id" : "1052457326"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "hJi01Bji",
+          "slug" : "reformat_people"
+        } ],
+        "outputs" : [ {
+          "id" : "lpoIOKAV",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "reformat_people_AKVg3xbY" : {
+      "id" : "reformat_people_AKVg3xbY",
+      "component" : "SQLStatement",
+      "metadata" : {
+        "label" : "reformat_people"
+      },
+      "properties" : {
+        "fileTabs" : [ {
+          "path" : "output_port_1",
+          "id" : "output_port_1",
+          "language" : "sql",
+          "content" : "\nSELECT *\n\nFROM {{ ref('sample_test_pipeline__reformat_people') }}\n\n"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_1",
+          "slug" : "input_port_1"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_1",
+          "slug" : "output_port_1"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "conn_sorted_genders##NU0rLjZj_xvBXOxgo_sorted_genders_xvBXOxgo",
+    "source" : "sorted_genders##NU0rLjZj",
+    "sourcePort" : "xvBXOxgo",
+    "target" : "sorted_genders_xvBXOxgo",
+    "targetPort" : "input_port_2",
+    "isWireless" : false
+  }, {
+    "id" : "fA7cz3r9",
+    "source" : "gender_analysis##zRKe8knQ",
+    "sourcePort" : "lpoIOKAV",
+    "target" : "sorted_genders##NU0rLjZj",
+    "targetPort" : "yJzbr810",
+    "isWireless" : false
+  }, {
+    "id" : "B6SIpno8Sk_to_LjyVkTRaAb##ltj194Ph",
+    "source" : "reformat_people_AKVg3xbY",
+    "sourcePort" : "output_port_1",
+    "target" : "gender_analysis##zRKe8knQ",
+    "targetPort" : "hJi01Bji",
+    "isWireless" : false
+  } ],
+  "component" : "Model"
+}

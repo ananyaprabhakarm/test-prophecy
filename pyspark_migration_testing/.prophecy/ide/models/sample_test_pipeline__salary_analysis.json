@@ -1,0 +1,233 @@
+{
+  "id" : "sample_test_pipeline__salary_analysis",
+  "metainfo" : {
+    "label" : "sample_test_pipeline__salary_analysis",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "materialized" : "ephemeral",
+        "database" : "\"qa_team\"",
+        "schema" : "\"qa_orchestration\"",
+        "type" : "ModelConfig"
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "salary_analysis_M1ghjqVT" : {
+      "id" : "salary_analysis_M1ghjqVT",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "salary_analysis"
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "\nSELECT *\n\nFROM salary_analysis\n\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_2",
+          "slug" : "input_port_2"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_2",
+          "slug" : "output_port_2"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "salary_analysis##HafjwbWz" : {
+      "id" : "salary_analysis##HafjwbWz",
+      "component" : "Aggregate",
+      "metadata" : {
+        "label" : "salary_analysis",
+        "x" : 960,
+        "y" : 160,
+        "phase" : 0,
+        "leadingComment" : " Aggregate gem: Salary distribution by bracket"
+      },
+      "properties" : {
+        "aggregate" : [ {
+          "expression" : {
+            "expression" : "salary_bracket"
+          },
+          "_row_id" : "1525131000"
+        }, {
+          "expression" : {
+            "expression" : "COUNT(*)"
+          },
+          "alias" : "employee_count",
+          "_row_id" : "68369822"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(AVG(annual_salary), 2)"
+          },
+          "alias" : "avg_salary_in_bracket",
+          "_row_id" : "55389889"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(MIN(annual_salary), 2)"
+          },
+          "alias" : "min_salary_in_bracket",
+          "_row_id" : "1771376432"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(MAX(annual_salary), 2)"
+          },
+          "alias" : "max_salary_in_bracket",
+          "_row_id" : "1757628030"
+        } ],
+        "allowSelection" : true,
+        "condition" : {
+          "expression" : ""
+        },
+        "activeTab" : "aggregate",
+        "columnsSelector" : [ ],
+        "groupBy" : [ {
+          "expression" : {
+            "expression" : "salary_bracket"
+          },
+          "_row_id" : "1077548503"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "Iwuf9bAD",
+          "slug" : "salary_with_bucket"
+        } ],
+        "outputs" : [ {
+          "id" : "M1ghjqVT",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "salary_with_buck##hfLHcV8t" : {
+      "id" : "salary_with_buck##hfLHcV8t",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "salary_with_bucket",
+        "x" : 760,
+        "y" : 160,
+        "phase" : 0,
+        "leadingComment" : " Reformat gem: Add salary bucket classification"
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "employee_id"
+          },
+          "_row_id" : "524790033"
+        }, {
+          "expression" : {
+            "expression" : "employee_name"
+          },
+          "_row_id" : "1554258330"
+        }, {
+          "expression" : {
+            "expression" : "dept"
+          },
+          "_row_id" : "552788768"
+        }, {
+          "expression" : {
+            "expression" : "job_title"
+          },
+          "_row_id" : "133352806"
+        }, {
+          "expression" : {
+            "expression" : "annual_salary"
+          },
+          "_row_id" : "97772863"
+        }, {
+          "expression" : {
+            "expression" : "CASE\n  WHEN annual_salary < 80000\n    THEN 'Entry Level (<80K)'\n  WHEN annual_salary >= 80000 AND annual_salary < 100000\n    THEN 'Mid Level (80K-100K)'\n  WHEN annual_salary >= 100000 AND annual_salary < 120000\n    THEN 'Senior (100K-120K)'\n  ELSE 'Executive (120K+)'\nEND"
+          },
+          "alias" : "salary_bracket",
+          "_row_id" : "2070015361"
+        }, {
+          "expression" : {
+            "expression" : "PERCENT_RANK() OVER (ORDER BY annual_salary)"
+          },
+          "alias" : "salary_percentile",
+          "_row_id" : "883469884"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "lDwiJjNm",
+          "slug" : "reformat_employees"
+        } ],
+        "outputs" : [ {
+          "id" : "yatdRab5",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "reformat_employees_FjjRIPYi" : {
+      "id" : "reformat_employees_FjjRIPYi",
+      "component" : "SQLStatement",
+      "metadata" : {
+        "label" : "reformat_employees"
+      },
+      "properties" : {
+        "fileTabs" : [ {
+          "path" : "output_port_0",
+          "id" : "output_port_0",
+          "language" : "sql",
+          "content" : "\nSELECT *\n\nFROM {{ ref('sample_test_pipeline__reformat_employees') }}\n\n"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_0",
+          "slug" : "input_port_0"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_0",
+          "slug" : "output_port_0"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "conn_salary_analysis##HafjwbWz_M1ghjqVT_salary_analysis_M1ghjqVT",
+    "source" : "salary_analysis##HafjwbWz",
+    "sourcePort" : "M1ghjqVT",
+    "target" : "salary_analysis_M1ghjqVT",
+    "targetPort" : "input_port_2",
+    "isWireless" : false
+  }, {
+    "id" : "qFe594gD",
+    "source" : "salary_with_buck##hfLHcV8t",
+    "sourcePort" : "yatdRab5",
+    "target" : "salary_analysis##HafjwbWz",
+    "targetPort" : "Iwuf9bAD",
+    "isWireless" : false
+  }, {
+    "id" : "gjssul4AS4_to_OpSoryIS2K##wRIwqbgL",
+    "source" : "reformat_employees_FjjRIPYi",
+    "sourcePort" : "output_port_0",
+    "target" : "salary_with_buck##hfLHcV8t",
+    "targetPort" : "lDwiJjNm",
+    "isWireless" : false
+  } ],
+  "component" : "Model"
+}

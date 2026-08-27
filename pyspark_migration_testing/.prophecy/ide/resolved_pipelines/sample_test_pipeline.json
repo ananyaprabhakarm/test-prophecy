@@ -1,0 +1,541 @@
+{
+  "id" : "sample_test_pipeline",
+  "metainfo" : {
+    "label" : "sample_test_pipeline",
+    "autoLayout" : true,
+    "version" : 1,
+    "configuration" : {
+      "schema" : {
+        "type" : "record",
+        "fields" : [ ]
+      }
+    },
+    "isTranspiledPipeline" : false,
+    "processesVsModelFiles" : {
+      "sorted_countries_aps6Pviu" : "models/sample_test_pipeline/sample_test_pipeline__sorted_countries.sql",
+      "age_group_analysis_nn6nItQI" : "models/sample_test_pipeline/sample_test_pipeline__age_group_analysis.sql",
+      "age_group_analys##UwYVCDSE" : "models/sample_test_pipeline/sample_test_pipeline__age_group_analysis.sql",
+      "reformat_people##DB9aGszD" : "models/sample_test_pipeline/sample_test_pipeline__reformat_people.sql",
+      "sorted_countries##Ji7orwfy" : "models/sample_test_pipeline/sample_test_pipeline__sorted_countries.sql",
+      "country_demograp##sIj1OVJA" : "models/sample_test_pipeline/sample_test_pipeline__sorted_countries.sql",
+      "xlsx_source_GOQzsiurjR" : "models/sample_test_pipeline/sample_test_pipeline__reformat_people.sql",
+      "sorted_genders_xvBXOxgo" : "models/sample_test_pipeline/sample_test_pipeline__sorted_genders.sql",
+      "sorted_genders##NU0rLjZj" : "models/sample_test_pipeline/sample_test_pipeline__sorted_genders.sql",
+      "reformat_people_AKVg3xbY" : "models/sample_test_pipeline/sample_test_pipeline__sorted_genders.sql",
+      "gender_analysis##zRKe8knQ" : "models/sample_test_pipeline/sample_test_pipeline__sorted_genders.sql"
+    }
+  },
+  "processes" : {
+    "age_group_analys##UwYVCDSE" : {
+      "id" : "age_group_analys##UwYVCDSE",
+      "component" : "Model",
+      "metadata" : {
+        "label" : "sample_test_pipeline__age_group_analysis",
+        "phase" : 0
+      },
+      "properties" : {
+        "modelName" : "sample_test_pipeline__age_group_analysis"
+      },
+      "visualMetaInfo" : {
+        "lastNodeProcessIds" : [ "age_group_analysis_nn6nItQI" ],
+        "skipIfZeroRows" : false,
+        "visualProcessIds" : [ "age_group_analysis_nn6nItQI", "age_group_analys##UwYVCDSE", "reformat_people_AKVg3xbY" ],
+        "type" : "ephemeral",
+        "isTemporaryTable" : true
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "ZBj4ctTc",
+          "slug" : "in_0"
+        } ],
+        "outputs" : [ {
+          "id" : "nn6nItQI",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "reformat_people##DB9aGszD" : {
+      "id" : "reformat_people##DB9aGszD",
+      "component" : "Model",
+      "metadata" : {
+        "label" : "sample_test_pipeline__reformat_people",
+        "phase" : 0
+      },
+      "properties" : {
+        "modelName" : "sample_test_pipeline__reformat_people"
+      },
+      "visualMetaInfo" : {
+        "lastNodeProcessIds" : [ "reformat_people_AKVg3xbY" ],
+        "skipIfZeroRows" : false,
+        "visualProcessIds" : [ "reformat_people_AKVg3xbY", "reformat_people##DB9aGszD", "xlsx_source_GOQzsiurjR" ],
+        "type" : "ephemeral",
+        "isTemporaryTable" : true
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "gwqBId0o",
+          "slug" : "in_0"
+        } ],
+        "outputs" : [ {
+          "id" : "AKVg3xbY",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "sorted_countries##Ji7orwfy" : {
+      "id" : "sorted_countries##Ji7orwfy",
+      "component" : "Model",
+      "metadata" : {
+        "label" : "sample_test_pipeline__sorted_countries",
+        "phase" : 0
+      },
+      "properties" : {
+        "modelName" : "sample_test_pipeline__sorted_countries"
+      },
+      "visualMetaInfo" : {
+        "lastNodeProcessIds" : [ "sorted_countries_aps6Pviu" ],
+        "skipIfZeroRows" : false,
+        "visualProcessIds" : [ "sorted_countries_aps6Pviu", "sorted_countries##Ji7orwfy", "country_demograp##sIj1OVJA", "reformat_people_AKVg3xbY" ],
+        "type" : "ephemeral",
+        "isTemporaryTable" : true
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "GA7omJ3Y",
+          "slug" : "in_0"
+        } ],
+        "outputs" : [ {
+          "id" : "aps6Pviu",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "sorted_genders##NU0rLjZj" : {
+      "id" : "sorted_genders##NU0rLjZj",
+      "component" : "Model",
+      "metadata" : {
+        "label" : "sample_test_pipeline__sorted_genders",
+        "phase" : 0
+      },
+      "properties" : {
+        "modelName" : "sample_test_pipeline__sorted_genders"
+      },
+      "visualMetaInfo" : {
+        "lastNodeProcessIds" : [ "sorted_genders_xvBXOxgo" ],
+        "skipIfZeroRows" : false,
+        "visualProcessIds" : [ "sorted_genders_xvBXOxgo", "sorted_genders##NU0rLjZj", "gender_analysis##zRKe8knQ", "reformat_people_AKVg3xbY" ],
+        "type" : "ephemeral",
+        "isTemporaryTable" : true
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "hJi01Bji",
+          "slug" : "in_0"
+        } ],
+        "outputs" : [ {
+          "id" : "xvBXOxgo",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "WwZfOkiHCZ" : {
+      "id" : "WwZfOkiHCZ",
+      "component" : "OrchestrationTarget",
+      "kind" : "DatabricksVolumeTarget",
+      "metadata" : {
+        "label" : "xlsx_gender_target",
+        "phase" : 0
+      },
+      "properties" : {
+        "compression" : {
+          "kind" : "uncompressed"
+        },
+        "connector" : {
+          "kind" : "databricks",
+          "properties" : {
+            "catalog" : "qa-team",
+            "provider" : "",
+            "clientId" : "",
+            "oAuthType" : "u2m",
+            "kgConfig" : {
+              "authProperties" : {
+                "authType" : "oauth",
+                "clientId" : "",
+                "oAuthAppRegistrationID" : "",
+                "oAuthType" : "u2m"
+              },
+              "kgSchedule" : { },
+              "useConnectorAuth" : true
+            },
+            "authType" : "pat",
+            "id" : "databricks",
+            "schema" : "default",
+            "jdbcUrl" : "jdbc:databricks://dbc-ac0e9adb-13fb.cloud.databricks.com:443/default;transportMode=http;ssl=1;AuthMech=3;httpPath=/sql/1.0/warehouses/2dc4d06bcada6a51;",
+            "token" : {
+              "kind" : "prophecy",
+              "properties" : {
+                "id" : "152",
+                "name" : "DATABRICKS_TOKEN"
+              },
+              "subKind" : "text",
+              "type" : "secret"
+            },
+            "oAuthAppRegistrationID" : "",
+            "interimVolume" : ""
+          },
+          "type" : "connector"
+        },
+        "format" : {
+          "category" : "file",
+          "kind" : "xlsx",
+          "properties" : {
+            "sheetColumnName" : null,
+            "WriteMethod" : "SingleSheetData",
+            "multiFileWriteSheetName" : null,
+            "skipIfZeroRows" : null,
+            "ignoreCellFormatting" : true,
+            "excelTargetMode" : "NewFile",
+            "timeCustomFormat" : null,
+            "schema" : {
+              "fields" : [ {
+                "dataType" : {
+                  "type" : "utf8"
+                },
+                "name" : "gender"
+              }, {
+                "dataType" : {
+                  "type" : "int64"
+                },
+                "name" : "total_people"
+              }, {
+                "dataType" : {
+                  "type" : "float64"
+                },
+                "name" : "avg_age"
+              }, {
+                "dataType" : {
+                  "type" : "int32"
+                },
+                "name" : "min_age"
+              }, {
+                "dataType" : {
+                  "type" : "int32"
+                },
+                "name" : "max_age"
+              }, {
+                "dataType" : {
+                  "type" : "int64"
+                },
+                "name" : "countries_represented"
+              }, {
+                "dataType" : {
+                  "type" : "int64"
+                },
+                "name" : "age_groups_present"
+              } ],
+              "providerType" : "Arrow"
+            },
+            "multiFileWriteFileColumnName" : null,
+            "sheetName" : "Gender_Analysis",
+            "multiFileWriteFilePrefix" : null,
+            "header" : true,
+            "startCell" : "A1",
+            "useSchema" : null,
+            "password" : null
+          }
+        },
+        "properties" : {
+          "filePath" : "/Volumes/qa-team/qa_volume_managed/managed_volume/orchestration_datasets/xlsx/output/gender_analysis.xlsx"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "UQdDIyvBmo",
+          "slug" : "in"
+        } ],
+        "outputs" : [ ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "88OSVGzk60" : {
+      "id" : "88OSVGzk60",
+      "component" : "OrchestrationTarget",
+      "kind" : "DatabricksVolumeTarget",
+      "metadata" : {
+        "label" : "xlsx_country_target",
+        "phase" : 0
+      },
+      "properties" : {
+        "compression" : {
+          "kind" : "uncompressed"
+        },
+        "connector" : {
+          "kind" : "databricks",
+          "properties" : {
+            "catalog" : "qa-team",
+            "provider" : "",
+            "clientId" : "",
+            "oAuthType" : "u2m",
+            "kgConfig" : {
+              "authProperties" : {
+                "authType" : "oauth",
+                "clientId" : "",
+                "oAuthAppRegistrationID" : "",
+                "oAuthType" : "u2m"
+              },
+              "kgSchedule" : { },
+              "useConnectorAuth" : true
+            },
+            "authType" : "pat",
+            "id" : "databricks",
+            "schema" : "default",
+            "jdbcUrl" : "jdbc:databricks://dbc-ac0e9adb-13fb.cloud.databricks.com:443/default;transportMode=http;ssl=1;AuthMech=3;httpPath=/sql/1.0/warehouses/2dc4d06bcada6a51;",
+            "token" : {
+              "kind" : "prophecy",
+              "properties" : {
+                "id" : "152",
+                "name" : "DATABRICKS_TOKEN"
+              },
+              "subKind" : "text",
+              "type" : "secret"
+            },
+            "oAuthAppRegistrationID" : "",
+            "interimVolume" : ""
+          },
+          "type" : "connector"
+        },
+        "format" : {
+          "category" : "file",
+          "kind" : "xlsx",
+          "properties" : {
+            "sheetColumnName" : null,
+            "WriteMethod" : "SingleSheetData",
+            "multiFileWriteSheetName" : null,
+            "skipIfZeroRows" : null,
+            "ignoreCellFormatting" : true,
+            "excelTargetMode" : "NewFile",
+            "timeCustomFormat" : null,
+            "schema" : {
+              "fields" : [ {
+                "dataType" : {
+                  "type" : "utf8"
+                },
+                "name" : "country"
+              }, {
+                "dataType" : {
+                  "type" : "int64"
+                },
+                "name" : "total_people"
+              }, {
+                "dataType" : {
+                  "type" : "float64"
+                },
+                "name" : "avg_age"
+              }, {
+                "dataType" : {
+                  "type" : "int32"
+                },
+                "name" : "min_age"
+              }, {
+                "dataType" : {
+                  "type" : "int32"
+                },
+                "name" : "max_age"
+              }, {
+                "dataType" : {
+                  "type" : "int64"
+                },
+                "name" : "male_count"
+              }, {
+                "dataType" : {
+                  "type" : "int64"
+                },
+                "name" : "female_count"
+              }, {
+                "dataType" : {
+                  "type" : "int64"
+                },
+                "name" : "age_groups_present"
+              } ],
+              "providerType" : "Arrow"
+            },
+            "multiFileWriteFileColumnName" : null,
+            "sheetName" : "Country_Demographics",
+            "multiFileWriteFilePrefix" : null,
+            "header" : true,
+            "startCell" : "A1",
+            "useSchema" : null,
+            "password" : null
+          }
+        },
+        "properties" : {
+          "filePath" : "/Volumes/qa-team/qa_volume_managed/managed_volume/orchestration_datasets/xlsx/output/country_demographics.xlsx"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "fwNONEuahB",
+          "slug" : "in"
+        } ],
+        "outputs" : [ ],
+        "isCustomOutputSchema" : false
+      }
+    },
+    "VLsshxp48Z" : {
+      "id" : "VLsshxp48Z",
+      "component" : "OrchestrationSource",
+      "kind" : "DatabricksVolumeSource",
+      "metadata" : {
+        "label" : "xlsx_source",
+        "x" : 140,
+        "y" : 220,
+        "phase" : 0,
+        "comment" : "Imports employee records from an Excel file stored in Databricks."
+      },
+      "properties" : {
+        "connector" : {
+          "kind" : "databricks",
+          "properties" : {
+            "id" : "databricks"
+          },
+          "type" : "connector"
+        },
+        "format" : {
+          "kind" : "xlsx",
+          "category" : "file",
+          "properties" : {
+            "allowUndefinedRows" : true,
+            "appendRecordIdColumn" : null,
+            "skipTopRows" : null,
+            "FilterValue" : null,
+            "description" : null,
+            "inferenceDataSamplingLimit" : null,
+            "ignoreCellFormatting" : null,
+            "enableSchemaMerging" : null,
+            "cellRange" : null,
+            "dateFormatRef" : null,
+            "allNullRowsPeekLimit" : 100,
+            "FilterOption" : null,
+            "sheetNames" : null,
+            "skipUndefinedRows" : null,
+            "schema" : {
+              "providerType" : "Arrow",
+              "fields" : [ {
+                "name" : "Column-1",
+                "dataType" : {
+                  "type" : "int64"
+                }
+              }, {
+                "name" : "First Name",
+                "dataType" : {
+                  "type" : "utf8"
+                }
+              }, {
+                "name" : "Last Name",
+                "dataType" : {
+                  "type" : "utf8"
+                }
+              }, {
+                "name" : "Gender",
+                "dataType" : {
+                  "type" : "utf8"
+                }
+              }, {
+                "name" : "Country",
+                "dataType" : {
+                  "type" : "utf8"
+                }
+              }, {
+                "name" : "Age",
+                "dataType" : {
+                  "type" : "int64"
+                }
+              }, {
+                "name" : "Date",
+                "dataType" : {
+                  "type" : "utf8"
+                }
+              }, {
+                "name" : "Id",
+                "dataType" : {
+                  "type" : "int64"
+                }
+              } ]
+            },
+            "ReadMethod" : "SingleSheetData",
+            "timeFormatRef" : null,
+            "allowIncompleteRows" : true,
+            "sheetName" : null,
+            "header" : true,
+            "recordIdColumnName" : null,
+            "allowAllNullRows" : null,
+            "defaultColumnPrefix" : null,
+            "timestampFormatRef" : null,
+            "password" : null
+          }
+        },
+        "properties" : {
+          "fileOperationProperties" : {
+            "includeFileNameColumn" : false,
+            "includeSheetNameColumn" : false,
+            "fileLoadingType" : "filepath"
+          },
+          "filePath" : "/Volumes/qa-team/qa_volume_managed/managed_volume/orchestration_datasets/xlsx/file_example_XLSX_5000.xlsx"
+        },
+        "compression" : {
+          "kind" : "uncompressed"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "GOQzsiurjR",
+          "slug" : "out0"
+        } ],
+        "isCustomOutputSchema" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "ymK45GZRiz_to_fwNONEuahB",
+    "source" : "sorted_countries##Ji7orwfy",
+    "sourcePort" : "aps6Pviu",
+    "target" : "88OSVGzk60",
+    "targetPort" : "fwNONEuahB"
+  }, {
+    "id" : "z9k9S0zRKS_to_UQdDIyvBmo",
+    "source" : "sorted_genders##NU0rLjZj",
+    "sourcePort" : "xvBXOxgo",
+    "target" : "WwZfOkiHCZ",
+    "targetPort" : "UQdDIyvBmo"
+  }, {
+    "id" : "GOQzsiurjR_to_Cmms991m0o##siPJivCH",
+    "source" : "VLsshxp48Z",
+    "sourcePort" : "GOQzsiurjR",
+    "target" : "reformat_people##DB9aGszD",
+    "targetPort" : "gwqBId0o"
+  }, {
+    "id" : "B6SIpno8Sk_to_zO9Df8WRPQ##k20euNs2",
+    "source" : "reformat_people##DB9aGszD",
+    "sourcePort" : "AKVg3xbY",
+    "target" : "age_group_analys##UwYVCDSE",
+    "targetPort" : "ZBj4ctTc"
+  }, {
+    "id" : "B6SIpno8Sk_to_kiTquGNOnc##vjdVKI6S",
+    "source" : "reformat_people##DB9aGszD",
+    "sourcePort" : "AKVg3xbY",
+    "target" : "sorted_countries##Ji7orwfy",
+    "targetPort" : "GA7omJ3Y"
+  }, {
+    "id" : "B6SIpno8Sk_to_LjyVkTRaAb##ltj194Ph",
+    "source" : "reformat_people##DB9aGszD",
+    "sourcePort" : "AKVg3xbY",
+    "target" : "sorted_genders##NU0rLjZj",
+    "targetPort" : "hJi01Bji"
+  } ],
+  "component" : "Pipeline"
+}

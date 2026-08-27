@@ -1,0 +1,174 @@
+{
+  "id" : "sample_test_pipeline__reformat_people",
+  "metainfo" : {
+    "label" : "sample_test_pipeline__reformat_people",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "materialized" : "ephemeral",
+        "database" : "\"qa_team\"",
+        "schema" : "\"qa_orchestration\"",
+        "type" : "ModelConfig"
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "reformat_people_AKVg3xbY" : {
+      "id" : "reformat_people_AKVg3xbY",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "reformat_people"
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "\nSELECT *\n\nFROM reformat_people\n\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_1",
+          "slug" : "input_port_1"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_1",
+          "slug" : "output_port_1"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "reformat_people##DB9aGszD" : {
+      "id" : "reformat_people##DB9aGszD",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "reformat_people",
+        "phase" : 0,
+        "leadingComment" : "Reformat gem: Clean and transform person data from XLSX"
+      },
+      "properties" : {
+        "columnsSelector" : [ ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "Id"
+          },
+          "alias" : "person_id",
+          "_row_id" : "172667772"
+        }, {
+          "expression" : {
+            "expression" : "`First Name`"
+          },
+          "alias" : "first_name",
+          "_row_id" : "819807026"
+        }, {
+          "expression" : {
+            "expression" : "`Last Name`"
+          },
+          "alias" : "last_name",
+          "_row_id" : "1547740425"
+        }, {
+          "expression" : {
+            "expression" : "CONCAT(`First Name`, ' ', `Last Name`)"
+          },
+          "alias" : "full_name",
+          "_row_id" : "2065335672"
+        }, {
+          "expression" : {
+            "expression" : "Gender"
+          },
+          "alias" : "gender",
+          "_row_id" : "1586972302"
+        }, {
+          "expression" : {
+            "expression" : "Country"
+          },
+          "alias" : "country",
+          "_row_id" : "1866427228"
+        }, {
+          "expression" : {
+            "expression" : "CAST(Age AS INT)"
+          },
+          "alias" : "age",
+          "_row_id" : "112201711"
+        }, {
+          "expression" : {
+            "expression" : "CASE\n  WHEN Age < 25\n    THEN 'Young Adult'\n  WHEN Age >= 25 AND Age < 40\n    THEN 'Adult'\n  WHEN Age >= 40 AND Age < 55\n    THEN 'Middle Age'\n  ELSE 'Senior'\nEND"
+          },
+          "alias" : "age_group",
+          "_row_id" : "1501719006"
+        }, {
+          "expression" : {
+            "expression" : "Date"
+          },
+          "alias" : "registration_date",
+          "_row_id" : "2070322912"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "gwqBId0o",
+          "slug" : "xlsx_source"
+        } ],
+        "outputs" : [ {
+          "id" : "AKVg3xbY",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "xlsx_source_GOQzsiurjR" : {
+      "id" : "xlsx_source_GOQzsiurjR",
+      "component" : "SQLStatement",
+      "metadata" : {
+        "label" : "xlsx_source"
+      },
+      "properties" : {
+        "fileTabs" : [ {
+          "path" : "output_port_0",
+          "id" : "output_port_0",
+          "language" : "sql",
+          "content" : "\nSELECT *\n\nFROM {{ prophecy_tmp_source('sample_test_pipeline', 'xlsx_source') }}\n\n"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_0",
+          "slug" : "input_port_0"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_0",
+          "slug" : "output_port_0"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "conn_reformat_people##DB9aGszD_AKVg3xbY_reformat_people_AKVg3xbY",
+    "source" : "reformat_people##DB9aGszD",
+    "sourcePort" : "AKVg3xbY",
+    "target" : "reformat_people_AKVg3xbY",
+    "targetPort" : "input_port_1",
+    "isWireless" : false
+  }, {
+    "id" : "GOQzsiurjR_to_Cmms991m0o##siPJivCH",
+    "source" : "xlsx_source_GOQzsiurjR",
+    "sourcePort" : "output_port_0",
+    "target" : "reformat_people##DB9aGszD",
+    "targetPort" : "gwqBId0o",
+    "isWireless" : false
+  } ],
+  "component" : "Model"
+}

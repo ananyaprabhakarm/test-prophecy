@@ -1,0 +1,26 @@
+providerType: "Arrow"
+fields:
+- name: "Column-1"
+  dataType:
+    type: "int64"
+- name: "First Name"
+  dataType:
+    type: "utf8"
+- name: "Last Name"
+  dataType:
+    type: "utf8"
+- name: "Gender"
+  dataType:
+    type: "utf8"
+- name: "Country"
+  dataType:
+    type: "utf8"
+- name: "Age"
+  dataType:
+    type: "int64"
+- name: "Date"
+  dataType:
+    type: "utf8"
+- name: "Id"
+  dataType:
+    type: "int64"

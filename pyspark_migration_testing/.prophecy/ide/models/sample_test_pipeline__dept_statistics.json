@@ -1,0 +1,174 @@
+{
+  "id" : "sample_test_pipeline__dept_statistics",
+  "metainfo" : {
+    "label" : "sample_test_pipeline__dept_statistics",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "materialized" : "ephemeral",
+        "database" : "\"qa_team\"",
+        "schema" : "\"qa_orchestration\"",
+        "type" : "ModelConfig"
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "dept_statistics_GZnn389S" : {
+      "id" : "dept_statistics_GZnn389S",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "dept_statistics"
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "\nSELECT *\n\nFROM dept_statistics\n\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_3",
+          "slug" : "input_port_3"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_3",
+          "slug" : "output_port_3"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "dept_statistics##ofMCKlaG" : {
+      "id" : "dept_statistics##ofMCKlaG",
+      "component" : "Aggregate",
+      "metadata" : {
+        "label" : "dept_statistics",
+        "x" : 760,
+        "y" : 340,
+        "phase" : 0,
+        "leadingComment" : " Aggregate gem: Department-level statistics"
+      },
+      "properties" : {
+        "aggregate" : [ {
+          "expression" : {
+            "expression" : "dept"
+          },
+          "_row_id" : "1153195333"
+        }, {
+          "expression" : {
+            "expression" : "COUNT(*)"
+          },
+          "alias" : "employee_count",
+          "_row_id" : "1443445337"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(AVG(annual_salary), 2)"
+          },
+          "alias" : "avg_salary",
+          "_row_id" : "84351916"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(MIN(annual_salary), 2)"
+          },
+          "alias" : "min_salary",
+          "_row_id" : "1612740554"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(MAX(annual_salary), 2)"
+          },
+          "alias" : "max_salary",
+          "_row_id" : "1669781692"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(SUM(annual_salary), 2)"
+          },
+          "alias" : "total_salary_expense",
+          "_row_id" : "850336773"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(STDDEV(annual_salary), 2)"
+          },
+          "alias" : "salary_std_dev",
+          "_row_id" : "1405050727"
+        } ],
+        "allowSelection" : true,
+        "condition" : {
+          "expression" : ""
+        },
+        "activeTab" : "aggregate",
+        "columnsSelector" : [ ],
+        "groupBy" : [ {
+          "expression" : {
+            "expression" : "dept"
+          },
+          "_row_id" : "1168342476"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "AXYWsi1O",
+          "slug" : "reformat_employees"
+        } ],
+        "outputs" : [ {
+          "id" : "GZnn389S",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "reformat_employees_FjjRIPYi" : {
+      "id" : "reformat_employees_FjjRIPYi",
+      "component" : "SQLStatement",
+      "metadata" : {
+        "label" : "reformat_employees"
+      },
+      "properties" : {
+        "fileTabs" : [ {
+          "path" : "output_port_0",
+          "id" : "output_port_0",
+          "language" : "sql",
+          "content" : "\nSELECT *\n\nFROM {{ ref('sample_test_pipeline__reformat_employees') }}\n\n"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_0",
+          "slug" : "input_port_0"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_0",
+          "slug" : "output_port_0"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "conn_dept_statistics##ofMCKlaG_GZnn389S_dept_statistics_GZnn389S",
+    "source" : "dept_statistics##ofMCKlaG",
+    "sourcePort" : "GZnn389S",
+    "target" : "dept_statistics_GZnn389S",
+    "targetPort" : "input_port_3",
+    "isWireless" : false
+  }, {
+    "id" : "gjssul4AS4_to_Txayov3rZ9##ILnE9QsQ",
+    "source" : "reformat_employees_FjjRIPYi",
+    "sourcePort" : "output_port_0",
+    "target" : "dept_statistics##ofMCKlaG",
+    "targetPort" : "AXYWsi1O",
+    "isWireless" : false
+  } ],
+  "component" : "Model"
+}

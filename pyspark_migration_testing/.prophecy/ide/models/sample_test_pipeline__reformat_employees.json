@@ -1,0 +1,157 @@
+{
+  "id" : "sample_test_pipeline__reformat_employees",
+  "metainfo" : {
+    "label" : "sample_test_pipeline__reformat_employees",
+    "autoLayout" : true,
+    "staleState" : "none",
+    "sourceSuggestions" : {
+      "sources" : [ ]
+    },
+    "graphConfig" : {
+      "entityConfig" : {
+        "materialized" : "ephemeral",
+        "database" : "\"qa_team\"",
+        "schema" : "\"qa_orchestration\"",
+        "type" : "ModelConfig"
+      }
+    },
+    "version" : 3
+  },
+  "processes" : {
+    "reformat_employees_FjjRIPYi" : {
+      "id" : "reformat_employees_FjjRIPYi",
+      "component" : "TargetModel",
+      "metadata" : {
+        "label" : "reformat_employees"
+      },
+      "properties" : {
+        "customQueryDisabled" : true,
+        "customQuery" : false,
+        "incrementalEditorDisabled" : true,
+        "query" : "\nSELECT *\n\nFROM reformat_employees\n\n",
+        "isModel" : true,
+        "incrementalKey" : false,
+        "incremental" : {
+          "expression" : "true"
+        }
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "input_port_0",
+          "slug" : "input_port_0"
+        } ],
+        "outputs" : [ {
+          "id" : "output_port_0",
+          "slug" : "output_port_0"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "reformat_employe##kYd2aqrG" : {
+      "id" : "reformat_employe##kYd2aqrG",
+      "component" : "Reformat",
+      "metadata" : {
+        "label" : "reformat_employees",
+        "x" : 560,
+        "y" : 340,
+        "phase" : 0,
+        "leadingComment" : "Reformat gem: Transform and rename columns"
+      },
+      "properties" : {
+        "columnsSelector" : [ "YT4obTob##id", "YT4obTob##name", "YT4obTob##department", "YT4obTob##role", "YT4obTob##salary", "YT4obTob##status" ],
+        "expressions" : [ {
+          "expression" : {
+            "expression" : "CAST(id AS INT)"
+          },
+          "alias" : "employee_id",
+          "_row_id" : "518100464"
+        }, {
+          "expression" : {
+            "expression" : "UPPER(name)"
+          },
+          "alias" : "employee_name",
+          "_row_id" : "931798905"
+        }, {
+          "expression" : {
+            "expression" : "department"
+          },
+          "alias" : "dept",
+          "_row_id" : "1002314303"
+        }, {
+          "expression" : {
+            "expression" : "role"
+          },
+          "alias" : "job_title",
+          "_row_id" : "543941383"
+        }, {
+          "expression" : {
+            "expression" : "ROUND(salary, 2)"
+          },
+          "alias" : "annual_salary",
+          "_row_id" : "1179930732"
+        }, {
+          "expression" : {
+            "expression" : "CASE\n  WHEN status = 'active'\n    THEN 'Active'\n  WHEN status = 'inactive'\n    THEN 'Inactive'\n  ELSE 'Unknown'\nEND"
+          },
+          "alias" : "employment_status",
+          "_row_id" : "1579200294"
+        } ]
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "YT4obTob",
+          "slug" : "table_data_records"
+        } ],
+        "outputs" : [ {
+          "id" : "FjjRIPYi",
+          "slug" : "out"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    },
+    "4lp0Q9jaVG" : {
+      "id" : "4lp0Q9jaVG",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "table_data_records",
+        "x" : 360,
+        "y" : 340,
+        "phase" : 0
+      },
+      "properties" : {
+        "table" : {
+          "name" : "table_data_records",
+          "sourceName" : "qa_team_qa_orchestration",
+          "sourceType" : "Table"
+        }
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "NvaXvcO6VQ",
+          "slug" : "output_port_0"
+        } ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      }
+    }
+  },
+  "connections" : [ {
+    "id" : "conn_reformat_employe##kYd2aqrG_FjjRIPYi_reformat_employees_FjjRIPYi",
+    "source" : "reformat_employe##kYd2aqrG",
+    "sourcePort" : "FjjRIPYi",
+    "target" : "reformat_employees_FjjRIPYi",
+    "targetPort" : "input_port_0",
+    "isWireless" : false
+  }, {
+    "id" : "NvaXvcO6VQ_to_iIKkanIxZ6##WbAii6m5",
+    "source" : "4lp0Q9jaVG",
+    "sourcePort" : "NvaXvcO6VQ",
+    "target" : "reformat_employe##kYd2aqrG",
+    "targetPort" : "YT4obTob",
+    "isWireless" : false
+  } ],
+  "component" : "Model"
+}
